@@ -9,7 +9,7 @@
   justify-content: center;
   margin: 0 auto;
   box-sizing: border-box;
-  backdrop-filter: blur(50px);
+  backdrop-filter: blur(10px);
 }
 
 .logo {
@@ -32,11 +32,6 @@
   margin-right: 0;
 }
 
-.top-navbar .fas {
-  font-size: 18px;
-  margin-right: 10px;
-}
-
 .top-navbar .fas.fa-search {
   margin-right: 20px;
 }
@@ -50,19 +45,16 @@
   font-weight: 600;
 }
 
-/* Add some spacing between the logo and the first menu item */
 .logo + a {
   margin-left: 20px;
 }
 
-/* Make the navbar items inline-block so they can be centered */
 .top-navbar > a,
 .top-navbar > .logo {
   display: inline-block;
   vertical-align: middle;
 }
 
-/* Add some media queries to make the navbar responsive */
 @media (max-width: 768px) {
   .top-navbar {
     padding: 15px 20px;
@@ -87,11 +79,90 @@
   }
 }
 
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+.nav-links div {
+  color: #1d1d1f;
+  text-decoration: none;
+  margin-right: 10px;
+}
+header {
+  position: relative;
+}
+
+.dropdown-content {
+  padding: 0 40px;
+  justify-content: center;
+  background-color: #f7f7f7d5;
+  z-index: 1;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 46px;
+  left: 0;
+  right: 0;
+  transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out,
+  visibility 0s 0.3s;
+  display: flex;
+  flex-direction: row;
+}
+
+.top-navbar:hover + .dropdown-content,
+.dropdown-content:hover {
+  visibility: visible;
+  opacity: 1;
+  max-height: 400px;
+  transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.top-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.dropdown-content .column {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 10px 80px;
+}
+.dropdown-content .column h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 10px 0;
+}
+.dropdown-content .column a {
+  font-size: 17px;
+  font-weight: 400;
+  color: #1d1d1f;
+  text-decoration: none;
+  margin: 5px 0;
+}
+.dropdown-content .column a:first-child {
+  font-weight: 600;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
   padding: 0;
 }
-footer{
+footer {
   flex-wrap: nowrap;
   overflow-x: hidden;
 }
@@ -105,7 +176,6 @@ footer{
   color: #6e6e73;
   justify-content: space-between;
   text-align: left;
-
 }
 .footer-column {
   flex: 1;
@@ -145,7 +215,7 @@ footer{
 }
 .footer-bottom a {
   text-decoration: none;
-  color: #0071E3;
+  color: #0071e3;
   margin: 0 5px;
 }
 .footer-bottom a:hover {

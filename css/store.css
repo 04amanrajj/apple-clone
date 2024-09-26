@@ -10,7 +10,7 @@ body {
   /* width: 90%; */
   padding: 0 0 0 140px;
   padding-top: 50px;
-
+  z-index: 200;
   margin: 0 auto;
 }
 .header {
@@ -86,7 +86,15 @@ body {
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
 }
+.product:hover {
+  box-shadow: 2px 4px 12px #00000033;
+  transform:scale(1.02);
+  z-index: 1;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
+}
 .product {
+  cursor: pointer;
   position: relative;
   flex: 0 0 300px;
   scroll-snap-align: start;
@@ -98,14 +106,13 @@ body {
   display: flex;
   flex-direction: row;
   overflow: hidden;
+  margin-bottom: 15px;
   transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
   white-space: normal;
 }
 .product img {
   border-radius: 18px;
-  position: absolute;
-  height: 400px;
-  width: 100%;
+  padding-top: 130px;
 }
 
 .product-content {
