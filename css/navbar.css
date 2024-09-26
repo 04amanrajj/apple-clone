@@ -1,0 +1,89 @@
+.top-navbar {
+  background-color: #f7f7f7d5;
+  padding: 0px 40px;
+  display: flex;
+  position: fixed;
+  z-index: 1000;
+  align-items: center;
+  border-bottom: 1px solid #d2d2d2;
+  width: 100%;
+  justify-content: center;
+  margin: 0 auto;
+  box-sizing: border-box;
+  backdrop-filter: blur(50px);
+}
+
+.logo {
+  margin-right: 20px;
+}
+
+.top-navbar a {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  margin-right: 20px;
+}
+
+.top-navbar a:hover {
+  color: #06c;
+}
+
+.top-navbar a:last-child {
+  margin-right: 0;
+}
+
+.top-navbar .fas {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.top-navbar .fas.fa-search {
+  margin-right: 20px;
+}
+
+.top-navbar .fas.fa-shopping-bag {
+  margin-right: 0;
+}
+
+.store,
+.mac {
+  font-weight: 600;
+}
+
+/* Add some spacing between the logo and the first menu item */
+.logo + a {
+  margin-left: 20px;
+}
+
+/* Make the navbar items inline-block so they can be centered */
+.top-navbar > a,
+.top-navbar > .logo {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Add some media queries to make the navbar responsive */
+@media (max-width: 768px) {
+  .top-navbar {
+    padding: 15px 20px;
+  }
+  .top-navbar a {
+    font-size: 15px;
+  }
+  .top-navbar .fas {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-navbar {
+    padding: 10px 15px;
+  }
+  .top-navbar a {
+    font-size: 13px;
+  }
+  .top-navbar .fas {
+    font-size: 14px;
+  }
+}
