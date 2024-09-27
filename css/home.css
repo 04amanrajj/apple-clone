@@ -24,14 +24,47 @@ body {
   object-fit: cover;
 }
 
-.grids{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-top: 20px;
+.grids {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
 }
-.grid-item img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
+
+#slideshow-container {
+  position: relative;
+  width: 100%; /* Adjust according to your needs */
+  height: 100%; /* Adjust according to your needs */
+  overflow: hidden;
+}
+
+.slideshow-image {
+  background-color: black;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s ease-in-out;
+  top: 0;
+  left: 0;
+}
+
+.active {
+  transform: translateX(0); /* Image is visible */
+}
+
+.inactive {
+  transform: translateX(100%); /* Image is moved out of view */
+}
+
+.inactive-left {
+  transform: translateX(-100%); /* Image moved left when cycling backward */
+}
+
+
+

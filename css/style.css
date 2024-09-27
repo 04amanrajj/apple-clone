@@ -1,0 +1,23 @@
+
+/* slide css */
+.slide-up {
+  opacity: 0; /* Hidden initially */
+  transform: translateY(50px); /* Positioned 50px below its original spot */
+  transition: transform 1s ease-out, opacity 1s ease-out; /* Smooth slide and fade */
+}
+
+.slide-up.show {
+  opacity: 1; /* Make visible */
+  transform: translateY(0); /* Slide to original position */
+}
+
+.slide-left {
+  opacity: 0; /* Hidden initially */
+  transform: translateX(50px); /* Positioned 50px below its original spot */
+  transition: transform 1s ease-out, opacity 1s ease-out; /* Smooth slide and fade */
+}
+
+.slide-left.show {
+  opacity: 1; /* Make visible */
+  transform: translateX(0); /* Slide to original position */
+}
