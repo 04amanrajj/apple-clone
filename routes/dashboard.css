@@ -1,0 +1,145 @@
+.container {
+  display: flex;
+  min-height: min-content;
+}
+.left-panel {
+  height: 100vh;
+  background-color: #007bff;
+  color: white;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 300px;
+}
+
+.left-panel img {
+  width: 100%;
+  min-height: min-content;
+  max-width: 100%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+.left-panel a {
+  list-style-type: disclosure-closed;
+  font-weight: bold;
+  padding: 10px;
+  font-size: 20px;
+text-align: left;
+  color: white;
+}
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex: 1;
+  min-height: min-content;
+  padding: 0 20px;
+  width: 100%;
+  color: #333;
+  padding-left: 50px;
+  background-color: aliceblue;
+}
+.right-panel > div {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.right-panel > div input[type="text"] {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #777;
+}
+.right-panel > div h1 {
+  margin: 0;
+  font-size: 42px;
+}
+
+#products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.product:hover {
+  box-shadow: 2px 4px 12px #00000033;
+  transform: scale(1.02);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
+}
+.product {
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 18px;
+  box-shadow: 2px 4px 12px #00000014;
+  display: flex;
+  border: 1px solid #777;
+  height: min-content;
+  flex-direction: column;
+  padding: 20px;
+  transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
+}
+.product img {
+  border-radius: 18px;
+  width: 100%;
+  height: min-content;
+}
+
+.product p {
+  margin-bottom: 0;
+  text-align: left;
+}
+.product button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #ffff;
+  border-radius: 10px;
+  border: none;
+  margin: 1px;
+  width: 100%;
+  cursor: pointer;
+}
+.product div {
+  display: flex;
+}
+
+.edit-button:hover {
+  background-color: seagreen;
+}
+.delete-button:hover {
+  background-color: rgb(167, 19, 19);
+}
+
+form {
+  display: none;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 2px 4px 12px #00000014;
+  margin-bottom: 20px;
+  transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
+  border: 1px solid #777;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form input {
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 0px;
+  border: 1px solid #777;
+  backdrop-filter: blur(10px);
+}
+input[type="submit"] {
+  margin-top: 20px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: #007bff;
+}

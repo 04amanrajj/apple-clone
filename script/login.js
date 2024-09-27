@@ -11,11 +11,44 @@ let submitButton = document.getElementById("submit");
 submitButton.addEventListener("click", function (e) {
   e.preventDefault();
   let user = { username: username.value, password: password.value };
-  postData(baseUrl, user);
+  checkUser(baseUrl, user);
 });
 
 // POST data to the API
-function postData(url, user) {
-    
+async function postData(url, user) {
+  try {
+    let data = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+
+    data = await data.json();
+
+    // console.log(data.id); USERID
+  } catch (error) {
+    console.log(error);
+  }
 }
-console.log(postData());
+async function checkUser(url, user) {
+  try {
+    let data = await fetch(url);
+    data = await data.json();
+
+    data.forEach((element) => {
+      if (
+        element.username === user.username &&
+        element.password === user.password
+      ) {
+        console.log(element);
+        let url = baseUrl + "/" + element.id;
+        alert("Login successful!");
+        window.location.href = "/routes/dashboard.html";
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
