@@ -33,7 +33,10 @@ async function postData(url, user) {
     });
     console.log("User created successfully", data);
   } catch (error) {
-    console.log(error);
+    tostTopEnd.fire({
+      icon: "error",
+      title: `Server is RIP${error}`,
+    });
   }
 }
 
@@ -93,6 +96,9 @@ async function checkUser(url, user) {
       }, 3000);
     }
   } catch (error) {
-    console.log(error);
+    tostTopEnd.fire({
+      icon: "error",
+      title: `${error}`,
+    });
   }
 }

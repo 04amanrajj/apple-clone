@@ -1,5 +1,5 @@
-import { slide } from "/utils/utils.js";
-import {header,footer} from "/resources/preHtml.js";
+import { tostTopEnd,slide } from "/utils/utils.js";
+import { header, footer } from "/resources/preHtml.js";
 header();
 footer();
 slide();
@@ -13,7 +13,10 @@ async function data(baseUrl) {
     data = await data.json(); // Convert the response to JSON
     display(data);
   } catch (error) {
-    console.error("Error fetching data:", error);
+    tostTopEnd.fire({
+      icon: "error",
+      title: `${error}`,
+    });
     return;
   }
 }
@@ -24,9 +27,7 @@ function display(data) {
   data.forEach((element) => {
     product.innerHTML += `
   <div class="product">
-    <img src="${element.image}" alt="${
-      element.title
-    }" />
+    <img src="${element.image}" alt="${element.title}" />
     <div class="product-content">
       <h2>${element.title}</h2>
       <p>${element.description}</p>
