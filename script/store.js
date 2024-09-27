@@ -1,3 +1,9 @@
+import { slide } from "/utils/utils.js";
+import {header,footer} from "/resources/preHtml.js";
+header();
+footer();
+slide();
+
 let baseUrl = "http://localhost:4000/products";
 data(baseUrl);
 // Fetch data from the API
@@ -18,7 +24,9 @@ function display(data) {
   data.forEach((element) => {
     product.innerHTML += `
   <div class="product">
-    <img src="/images/products/iPhone 4S - Sam's Club.jpeg" alt="${element.title}" />
+    <img src="/images/products/iPhone 4S - Sam's Club.jpeg" alt="${
+      element.title
+    }" />
     <div class="product-content">
       <h2>${element.title}</h2>
       <p>${element.description}</p>
