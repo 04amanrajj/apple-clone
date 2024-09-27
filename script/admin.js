@@ -1,3 +1,5 @@
+import { tostTopEnd } from "/utils/utils.js";
+
 let baseUrl = "http://localhost:4000/products";
 
 let products = document.getElementById("products");
@@ -10,7 +12,8 @@ let form = document.querySelector("form");
 let deleteDiv = document.querySelector(".delete");
 let deleteID = document.querySelector(".delete-id");
 let deleteSubmitBtn = document.querySelector(".delete-btn");
-
+let updateProduct = document.querySelector("button");
+let removeButton = document.querySelector(".remove-button");
 // fetch data from the API to display products
 let apiData = async function () {
   let data = await fetch(baseUrl);
@@ -38,9 +41,9 @@ function displayProducts(data) {
     products.innerHTML += `
         <div class="product">
         <h2>${element.title}</h2>
-        <img src="/images/products/iPhone 4S - Sam's Club.jpeg" width="200px" height="200px" alt="" />
+        <img src="${element.image}" width="300px" height="400px" alt="" />
         <p>Description:${element.description}</p>
-        <p>Price:${element.price}</p>
+        <p>Price:$${element.price}</p>
         <p>ID:${element.id}</p>
         <div>
         <button class="edit-button">Edit</button>
@@ -54,64 +57,99 @@ listProducts.addEventListener("click", async function () {
   deleteDiv.style.display = "none";
   products.style.display = "grid";
   document.querySelector("form").style.display = "none";
-
-  let data = await apiData();
-  displayProducts(data);
-});
-
-// Add product
-addProduct.addEventListener("click", async function () {
-  document.querySelector("form").style.display = "flex";
-  deleteDiv.style.display = "none";
-  products.style.display = "none";
-});
-
-// Close form
-formClose.addEventListener("click", async function () {
-  document.querySelector("form").style.display = "none";
-  products.style.display = "grid";
-  form.reset();
+  tostTopEnd.fire({
+    icon: "success",
+    title: "Store Refreshed!",
+  });
 
   let data = await apiData();
   displayProducts(data);
 });
 
 // Add new product
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
-  let productTitle = document.getElementById("title").value;
-  let productDescription = document.getElementById("description").value;
-  let productPrice = document.getElementById("price").value;
-  let obj = {
-    title: productTitle,
-    description: productDescription,
-    price: productPrice,
-  };
-  console.log(obj);
+addProduct.addEventListener("click", function () {
+  Swal.fire({
+    title: "Add New Product",
+    html: `
+        <input type="text" id="swal-title" class="swal2-input" placeholder="Product Name" />
+        <input type="text" id="swal-description" class="swal2-input" placeholder="Description" />
+        <input type="url" id="swal-imageUrl" class="swal2-input" placeholder="image url" >
+        <input type="number" id="swal-price" class="swal2-input" placeholder="Price" />
+      `,
+    confirmButtonText: "Add Product",
+    showCancelButton: true,
+    preConfirm: () => {
+      let title = document.getElementById("swal-title").value;
+      let image = document.getElementById("swal-imageUrl").value;
+      let description = document.getElementById("swal-description").value;
+      let price = document.getElementById("swal-price").value;
 
-  fetch(baseUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(obj),
-  });
-});
+      if (!title || !description || !price) {
+        Swal.showValidationMessage("Please fill out all fields.");
+        return false;
+      }
 
-// remove product
-removeProduct.addEventListener("click", () => {
-  deleteDiv.style.display = "flex";
-  products.style.display = "none";
-});
+      return { title, image, description, price };
+    },
+  }).then(async (result) => {
+    let obj = {
+      title: result.value.title,
+      image: result.value.image,
+      description: result.value.description,
+      price: result.value.price,
+    };
+    fetch(baseUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(obj),
+    });
 
-deleteSubmitBtn.addEventListener("click", async () => {
-    let delID=deleteID.value
-  let delUrl = baseUrl + "/" + delID;
-  fetch(delUrl, {
-    method: "DELETE",
-  }).then(async () => {
-    // Close delete form and reload the list
-    deleteDiv.style.display = "none";
-    products.style.display = "grid";
+    tostTopEnd.fire({
+      icon: "success",
+      title: "Product Launched",
+    });
+
     let data = await apiData();
     displayProducts(data);
   });
 });
+
+// remove product
+removeProduct.addEventListener("click", function () {
+  Swal.fire({
+    title: "Remove Product",
+    input: "number",
+    inputLabel: "Enter Product ID",
+    inputPlaceholder: "Product ID",
+    showCancelButton: true,
+    confirmButtonText: "Delete",
+    preConfirm: (id) => {
+      if (!id) {
+        Swal.showValidationMessage("Need a product ID.");
+        return false;
+      }
+      return id;
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let delID = result.value;
+      let delUrl = `${baseUrl}/${delID}`;
+      fetch(delUrl, {
+        method: "DELETE",
+      }).then(async () => {
+        tostTopEnd.fire({
+          icon: "info",
+          title: "Product Discontinued!",
+        });
+
+        let data = await apiData();
+        displayProducts(data);
+      });
+    }
+  });
+});
+
+// update a product
+updateProduct.addEventListener("click",async()=>{
+    console.log("JI")
+})

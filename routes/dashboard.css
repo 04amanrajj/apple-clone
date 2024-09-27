@@ -41,7 +41,7 @@
   background-color: aliceblue;
 }
 .right-top {
-  margin-top: 20px;
+  margin: 20px 0;
   display: flex;
   justify-content: space-between;
 }
@@ -80,12 +80,16 @@
 }
 .product img {
   border-radius: 18px;
-  width: 100%;
-  height: min-content;
+  height: 300px;
+  margin: auto;
+  object-fit: scale-down;
 }
 
 .product p {
-  margin-bottom: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  margin: 2px;
   text-align: left;
 }
 .product button {
@@ -167,4 +171,15 @@ input[type="submit"] {
 .delete-btn:hover {
   background-color: rgb(167, 19, 19);
   color: #fff;
+}
+
+.logout{
+    padding: 10px 20px;
+    background-color: rgb(226, 26, 26);
+    color: #fff;
+    position: fixed;
+    bottom: 1%;
+    right:1%;
+    font-weight: bold;
+    border-radius: 10px;
 }

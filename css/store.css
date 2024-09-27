@@ -113,6 +113,8 @@ body {
 .product img {
   border-radius: 18px;
   padding-top: 130px;
+  object-fit: scale-down;
+  width: 300;
 }
 
 .product-content {

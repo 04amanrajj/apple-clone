@@ -24,7 +24,7 @@ function display(data) {
   data.forEach((element) => {
     product.innerHTML += `
   <div class="product">
-    <img src="/images/products/iPhone 4S - Sam's Club.jpeg" alt="${
+    <img src="${element.image}" alt="${
       element.title
     }" />
     <div class="product-content">

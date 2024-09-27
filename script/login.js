@@ -1,4 +1,4 @@
-import { slide } from "/utils/utils.js";
+import { tostTopEnd, slide } from "/utils/utils.js";
 import { header, footer } from "/resources/preHtml.js";
 header();
 slide();
@@ -27,27 +27,71 @@ async function postData(url, user) {
 
     data = await data.json();
 
-    // console.log(data.id); USERID
+    tostTopEnd.fire({
+      icon: "info",
+      title: "User created successfully",
+    });
+    console.log("User created successfully", data);
   } catch (error) {
     console.log(error);
   }
 }
+
 async function checkUser(url, user) {
   try {
     let data = await fetch(url);
     data = await data.json();
+
+    let userFound = false;
 
     data.forEach((element) => {
       if (
         element.username === user.username &&
         element.password === user.password
       ) {
-        console.log(element);
-        let url = baseUrl + "/" + element.id;
-        alert("Login successful!");
+        userFound = true;
+        tostTopEnd.fire({
+          icon: "info",
+          title: "Login successful!",
+        });
         window.location.href = "/routes/dashboard.html";
       }
     });
+
+    if (!userFound) {
+      swal.fire({
+        title: "New User? Let's create your account",
+        showCancelButton: true,
+        confirmButtonText: "Create Account",
+      });
+
+      setTimeout(() => {
+        Swal.fire({
+          title: "Create a new account",
+          html: `
+            <input type="text" id="swal-username" class="swal2-input" placeholder="Email or Phone Number" />
+            <input type="password" id="swal-password" class="swal2-input" placeholder="Password" />
+          `,
+          confirmButtonText: "Create Account",
+          showCancelButton: true,
+          preConfirm: () => {
+            let newUsername = document.getElementById("swal-username").value;
+            let newPassword = document.getElementById("swal-password").value;
+
+            if (!newUsername || !newPassword) {
+              Swal.showValidationMessage("fill all fields.");
+              return false;
+            }
+
+            return { username: newUsername, password: newPassword };
+          },
+        }).then((response) => {
+          if (response.isConfirmed) {
+            postData(baseUrl, response.value);
+          }
+        });
+      }, 3000);
+    }
   } catch (error) {
     console.log(error);
   }
