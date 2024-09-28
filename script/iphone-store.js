@@ -11,28 +11,27 @@ let watches = document.querySelector(".watches");
 
 // Fetch data from the API
 async function apiData() {
-    let data = await fetch(baseUrl);
-    data = await data.json();
-    display(data);
-    return data;
+  let data = await fetch(baseUrl);
+  data = await data.json();
+  display(data);
 }
 apiData();
 
 //Display products by names
 function display(data) {
-    data.reverse()
-  data.forEach(element => {
+  data.reverse();
+  data.forEach((element) => {
     // console.log(element)
-    if(element.type=="mobile"){
-        loadData(element)
+    if (element.type == "mobile") {
+      loadData(element);
     }
-
   });
 }
 
-function loadData(data){
-    console.log(data)
-    iphones.innerHTML+=`
+// function to add data in dom
+function loadData(data) {
+  console.log(data);
+  iphones.innerHTML += `
 <div class="mobiles">
     <div>
         <img src="${data.image}" alt="${data.title}" />
@@ -44,11 +43,17 @@ function loadData(data){
                 <p>${data.description}</p>
                 <h3>$${data.price}</h3>
             </div>
-            <a href="#" class="view-btn">View</a>
+            <a href="#" Onclick=myID(${data.id}) class="view-btn">View</a>
         </div>
     </div>
-</div>
-
-    `
-
+</div>`;
 }
+
+// clicked product id
+window.myID = async function (id) {
+  let data = await fetch(baseUrl + "/" + id);
+  data = await data.json();
+  console.log(data);
+  localStorage.setItem("id", id);
+  window.location.href="/routes/detail.html"
+};

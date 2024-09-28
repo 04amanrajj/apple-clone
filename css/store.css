@@ -137,13 +137,3 @@ body {
   font-size: 14px;
   font-weight: 400;
 }
-
-* img {
-  cursor: pointer;
-  -webkit-touch-callout: none;
-  user-select: none;
-  -moz-user-drag: none;
-  -webkit-user-drag: none;
-  -ms-user-drag: none;
-  -o-user-drag: none;
-}

@@ -34,3 +34,13 @@
   opacity: 1; /* Make visible */
   transform: translateY(0); /* Slide to original position */
 }
+
+* img {
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -moz-user-drag: none;
+  -webkit-user-drag: none;
+  -ms-user-drag: none;
+  -o-user-drag: none;
+}
