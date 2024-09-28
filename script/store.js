@@ -21,9 +21,10 @@ async function data(baseUrl) {
   }
 }
 function display(data) {
+  data.sort((a,b)=>b.id-a.id) //latest products
   let product = document.getElementById("products");
   product.innerHTML = ""; // Clear the existing products
-  console.log(data);
+  // console.log(data.reverse());
   data.forEach((element) => {
     product.innerHTML += `
   <div class="product">
