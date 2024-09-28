@@ -1,63 +1,48 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Panel</title>
-    <link rel="stylesheet" href="/css/dashboard.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="left-panel">
-        <h1>Welcome, Admin</h1>
-        <img src="/images/admin.png" width="200px" height="200px" alt="" />
-        <a href="#" id="list-products">List all products</a>
-        <a href="#" id="add-product">Add new products</a>
-        <a href="#" id="remove-product">Remove a product</a>
-      </div>
-      <div class="right-panel">
-        <div class="right-top">
-          <h1>Dashboard</h1>
-          <input type="text" id="search" placeholder="Search products" />
-        </div>
 
-        <div id="products">
-          <h2>Select any operation to do something</h2>
-          <!-- Products will be dynamically loaded here -->
-        </div>
-        <form>
-          <input
-            type="text"
-            name="product_name"
-            placeholder="Product Name"
-            id="title"
-            required
-          />
-          <input
-            type="text"
-            name="description"
-            placeholder="Description"
-            id="description"
-            required
-          />
-          <input
-            type="number"
-            name="price"
-            placeholder="Price"
-            id="price"
-            required
-          />
-          <input type="submit" value="Add Product" />
-          <button>Close</button>
-        </form>
-        <!-- delete form -->
-        <div class="delete">
-          <input class="delete-id" type="text" placeholder="Enter Name or ID"/>
-          <button class="delete-btn">Delete</button>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <h1>Welcome, Admin</h1>
+      <img src="/images/admin.png" width="200px" height="200px" alt="" />
+      <a href="#" id="list-products">List all products</a>
+      <a href="#" id="add-product">Add new products</a>
+      <a href="#" id="remove-product">Remove a product</a>
+    </div>
+    <div class="right-panel">
+      <div class="right-top">
+        <h1>Dashboard</h1>
+        <input type="text" id="search" placeholder="Search products" />
+      </div>
+
+      <div id="products">
+        <h2>Select any operation to do something</h2>
+        <!-- Products will be dynamically loaded here -->
+      </div>
+      <form>
+        <input type="text" name="product_name" placeholder="Product Name" id="title" required />
+        <input type="text" name="description" placeholder="Description" id="description" required />
+        <input type="number" name="price" placeholder="Price" id="price" required />
+        <input type="submit" value="Add Product" />
+        <button>Close</button>
+      </form>
+      <!-- delete form -->
+      <div class="delete">
+        <input class="delete-id" type="text" placeholder="Enter Name or ID" />
+        <button class="delete-btn">Delete</button>
       </div>
     </div>
-    <a class="logout" href="/index.html">LogOut</a>
-  </body>
+  </div>
+  <a class="logout" href="/index.html">LogOut</a>
+</body>
+
 </html>
 <script type="module" src="/script/dashboard.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

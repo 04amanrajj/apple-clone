@@ -72,28 +72,37 @@ addProduct.addEventListener("click", function () {
   Swal.fire({
     title: "Add New Product",
     html: `
+        <select name="" id="swal-type" required>
+            <option value="mobile">Mobile</option>
+            <option value="pc">Mac</option>
+            <option value="watch">Watch</option>
+            <option value="accessories">Accessories</option>
+        </select>
+      
         <input type="text" id="swal-title" class="swal2-input" placeholder="Product Name" />
         <input type="text" id="swal-description" class="swal2-input" placeholder="Description" />
-        <input type="url" id="swal-imageUrl" class="swal2-input" placeholder="image url" >
+        <input type="url" id="swal-imageUrl" class="swal2-input" placeholder="image url" />
         <input type="number" id="swal-price" class="swal2-input" placeholder="Price" />
       `,
     confirmButtonText: "Add Product",
     showCancelButton: true,
     preConfirm: () => {
+      let type = document.getElementById("swal-type").value;
       let title = document.getElementById("swal-title").value;
       let image = document.getElementById("swal-imageUrl").value;
       let description = document.getElementById("swal-description").value;
       let price = document.getElementById("swal-price").value;
 
-      if (!title || !description || !price) {
+      if (!type || !title || !description || !price) {
         Swal.showValidationMessage("Please fill out all fields.");
         return false;
       }
 
-      return { title, image, description, price };
+      return { type, title, image, description, price };
     },
   }).then(async (result) => {
     let obj = {
+      type: result.value.type,
       title: result.value.title,
       image: result.value.image,
       description: result.value.description,
@@ -151,6 +160,6 @@ removeProduct.addEventListener("click", function () {
 });
 
 // update a product
-updateProduct.addEventListener("click",async()=>{
-    console.log("JI")
-})
+updateProduct.addEventListener("click", async () => {
+  console.log("JI");
+});

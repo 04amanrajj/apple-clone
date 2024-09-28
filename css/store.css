@@ -88,7 +88,7 @@ body {
 }
 .product:hover {
   box-shadow: 2px 4px 12px #00000033;
-  transform:scale(1.02);
+  transform: scale(1.02);
   z-index: 1;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
@@ -108,7 +108,6 @@ body {
   overflow: hidden;
   margin-bottom: 15px;
   transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
-  white-space: normal;
 }
 .product img {
   border-radius: 18px;
@@ -137,4 +136,14 @@ body {
 .product-content .price {
   font-size: 14px;
   font-weight: 400;
+}
+
+* img {
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -moz-user-drag: none;
+  -webkit-user-drag: none;
+  -ms-user-drag: none;
+  -o-user-drag: none;
 }

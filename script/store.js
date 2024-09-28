@@ -1,4 +1,4 @@
-import { tostTopEnd,slide } from "/utils/utils.js";
+import { tostTopEnd, slide } from "/utils/utils.js";
 import { header, footer } from "/resources/preHtml.js";
 header();
 footer();
@@ -21,13 +21,13 @@ async function data(baseUrl) {
   }
 }
 function display(data) {
-  data.sort((a,b)=>b.id-a.id) //latest products
+  data.sort((a, b) => b.id - a.id); //latest products
   let product = document.getElementById("products");
   product.innerHTML = ""; // Clear the existing products
   // console.log(data.reverse());
   data.forEach((element) => {
     product.innerHTML += `
-  <div class="product">
+  <a href="/routes/iphonestore.html" class="product auto-slide-up">
     <img src="${element.image}" alt="${element.title}" />
     <div class="product-content">
       <h2>${element.title}</h2>
@@ -36,7 +36,7 @@ function display(data) {
       element.price / 24
     )}/mo. for 24 mo.*</p>
     </div>
-  </div>
+  </a>
   `;
   });
 }
