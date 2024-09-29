@@ -111,9 +111,10 @@ body {
 }
 .product img {
   border-radius: 18px;
-  padding-top: 130px;
+  margin: 80px 5px 40px 5px;
   object-fit: scale-down;
   width: 300;
+  border-radius: 20px;
 }
 
 .product-content {
@@ -124,11 +125,12 @@ body {
 }
 
 .product-content h2 {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 600;
   margin: 0 0 10px;
 }
 .product-content p {
+  display: none;
   font-size: 14px;
   font-weight: 400;
   margin: 0 0 10px;

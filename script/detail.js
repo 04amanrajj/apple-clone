@@ -5,7 +5,7 @@ footer();
 slide();
 
 // main code
-let cart = localStorage.getItem("cart") || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let id = localStorage.getItem("id");
 let baseUrl = "http://localhost:4000/products/" + id;
 let productImg = document.querySelector(".device-img img");
@@ -15,46 +15,47 @@ let topPrice = document.querySelector(".price");
 let buyBtn = document.querySelector(".buy button");
 let localData;
 
-// fetching data using id and baseurl
+// Fetching data using id and baseurl
 try {
-  const response = await fetch(baseUrl);
-  const result = await response.json();
-  console.log(result);
-  localData = result;
+    const response = await fetch(baseUrl);
+    const result = await response.json();
+    console.log(result);
+    localData = result;
 
-  tostTopEnd.fire({
-    icon: "success",
-    title: "DOM Updated",
-  });
+    tostTopEnd.fire({
+        icon: "success",
+        title: "DOM Updated",
+    });
 } catch (error) {
-  tostTopEnd.fire({
-    icon: "error",
-    title: error,
-  });
+    tostTopEnd.fire({
+        icon: "error",
+        title: error,
+    });
 }
 
-// update data on DOM
+// Update data on DOM
 productImg.src = localData.image;
 for (let i of productName) {
-  i.textContent = localData.title;
+    i.textContent = localData.title;
 }
-description.textContent=localData.description
+description.textContent = localData.description;
 topPrice.innerHTML = `From $${localData.price} or $${Math.floor(
-  localData.price / 24
+    localData.price / 24
 )}/mo. per month for 24mo.months`;
 
+// Add event listener to the buy button
 buyBtn.addEventListener("click", () => {
-  if (!cart.includes(id)) {
-    cart.push(id);
-    localStorage.setItem("cart", cart);
-    tostTopEnd.fire({
-      icon: "success",
-      title: "Added to cart",
-    });
-  } else {
-    tostTopEnd.fire({
-      icon: "info",
-      title: "Already in cart",
-    });
-  }
+    if (!cart.find(item => item === id)) {
+        cart.push(id);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        tostTopEnd.fire({
+            icon: "success",
+            title: "Added to cart",
+        });
+    } else {
+        tostTopEnd.fire({
+            icon: "info",
+            title: "Already in cart",
+        });
+    }
 });

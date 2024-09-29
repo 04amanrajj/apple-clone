@@ -1,11 +1,73 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bag</title>
-</head>
-<body>
-    
-    <h1>Shopping Bag</h1>
-</body>
+    <link rel="stylesheet" href="/css/cart.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="upper-part">
+        <h1>Your bag total is <span class="total"></span>.</h1>
+        <p>Free delivery and free returns.</p>
+        <button class="checkout">Check Out</button>
+      </div>
+      <hr />
+      <div class="middle-part">
+        <div class="items">
+          <div class="products">
+            <img src="" alt="" />
+          </div>
+          <div class="bottom">
+            <h2>AppleCare+ for <span class="name"></span> for $79.00</h2>
+            <ul>
+              <li>
+                2 years of unlimited repairs for accidental damage protection
+              </li>
+              <li>Apple-certified service and support</li>
+              <li>
+                Express Replacement Service — we'll ship you a replacement so
+                you don't have to wait for a repair
+              </li>
+              <li>Priority access to Apple experts</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="lower-part">
+        <div class="row">
+          <h4>Subtotal</h4>
+          <h4 class="total">$ -</h4>
+        </div>
+        <div class="row">
+          <h4>Shipping</h4>
+          <h4>FREE</h4>
+        </div>
+        <div class="row">
+          <h4>Estimated tax</h4>
+          <h4>18%</h4>
+        </div>
+        <hr />
+        <div class="row">
+          <h4>Total</h4>
+          <h4 class="totall">$ -</h4>
+        </div>
+        <button class="checkout">Check Out</button>
+      </div>
+    </div>
+    <hr />
+    <p>
+      Need some help? Chat now(Opens in a new window) or call 1-800-MY-APPLE.
+    </p>
+    <hr />
+    <div class="more">
+      <h1>You may also like</h1>
+    </div>
+    <a href="/routes/iphonestore.html"><img src="/images/bag.png" alt="" /></a>
+  </body>
 </html>
+<script type="module" src="/script/cart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

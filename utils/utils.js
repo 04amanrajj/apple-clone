@@ -68,54 +68,9 @@ function isUserLoggedin() {
     }
   });
 }
-// redirect to shop
-function redirect() {
-  let input = document.querySelector("#product");
-  input.addEventListener("input", () => {
-    window.location.href = "shop.html";
-  });
-}
-
-function showProductPopup(product) {
-  console.log(product)
-  Swal.fire({
-    html: `
-    <div class="popup-container">
-      <div class="popup-left">
-        <img src="${product.image}" alt="${product.name}">
-      </div>
-      <div class="popup-right">
-        <strong>Product:</strong> ${product.name} <br>
-        <strong>Price:</strong> Rs. ${product.cost} <br>
-        <strong>Discount:</strong> ${product.description} <br>
-        <strong>Ratings:</strong> ${product.ratingsContainer || "N/A"} ⭐ (${
-      product.ratingsCount || "No reviews"
-    })<br><br>
-        <button class="popup-btn">Add!</button>
-      </div>
-    </div>
-    `,
-    width: "auto",
-    showConfirmButton: false,
-    showCloseButton: false,
-    focusConfirm: true,
-  });
-
-  document.querySelector(".popup-btn").addEventListener("click", () => {
-    let arr = JSON.parse(localStorage.getItem("cart")) || [];
-    arr.push(product);
-    localStorage.setItem("cart", JSON.stringify(arr));
-    tostTopEnd.fire({
-      icon: "success",
-      title: "added to box",
-    });
-  });
-}
 
 export {
   tostTopEnd,
   tostBottomEnd,
   isUserLoggedin,
-  redirect,
-  showProductPopup, 
 };

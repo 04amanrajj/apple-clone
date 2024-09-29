@@ -1,0 +1,129 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #1d1d1f;
+}
+
+.container {
+  margin: auto;
+  width: 60%;
+  margin-top: 100px;
+}
+
+.upper-part {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+.upper-part h1 {
+  margin: 0;
+}
+.upper-part button {
+  margin: auto;
+  width: 30%;
+}
+
+.product img {
+  width: auto;
+  height: 300px;
+}
+.product div {
+  display: flex;
+}
+
+.products {
+  display: flex;
+  flex-direction: column;
+}
+.product {
+  display: flex;
+  margin: 20px auto;
+}
+
+.right {
+  height: fit-content;
+}
+.top {
+  margin-left: 20px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  width: 500px;
+}
+.top > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+select {
+  padding: 5px 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: none;
+  border: none;
+}
+
+.product button {
+  background-color: white;
+  border: none;
+}
+
+.lower-part {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.lower-part div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.lower-part h4 {
+  margin: 5px;
+}
+.checkout {
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  font-size: 16px;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: auto;
+  width: fit-content;
+  transition: background-color 0.3s ease-in-out;
+}
+.checkout:hover {
+  background-color: #0069d9;
+  transform: scale(1.02);
+}
+.checkout:active{
+    transform: scale(0.98);
+}
+p {
+  text-align: center;
+}
+li {
+  list-style-type: disc;
+  margin: 5px 0;
+  margin-left: 20px;
+}
+
+.more {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  width: fit-content;
+}
+.more + a {
+  display: flex;
+  margin: auto;
+  width: 50%;
+}
