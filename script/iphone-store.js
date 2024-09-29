@@ -5,9 +5,10 @@ footer();
 slide();
 
 let baseUrl = "http://localhost:4000/products";
-let iphones = document.querySelector(".iphones");
-let mac = document.querySelector(".mac");
-let watches = document.querySelector(".watches");
+let iphones = document.querySelector(".mobile");
+let mac = document.querySelector(".pc");
+let watches = document.querySelector(".watch");
+let accessories = document.querySelector(".accessories");
 
 // Fetch data from the API
 async function apiData() {
@@ -22,17 +23,30 @@ function display(data) {
   data.reverse();
   data.forEach((element) => {
     // console.log(element)
+    console.log(element);
     if (element.type == "mobile") {
-      loadData(element);
+      loadData(element, element.type);
+    }
+    if (element.type == "pc") {
+      console.log(element.type);
+      loadData(element, element.type);
+    }
+    if (element.type == "watch") {
+      console.log(element.type);
+      loadData(element, element.type);
+    }
+    if (element.type == "accessories") {
+      console.log(element.type);
+      loadData(element, element.type);
     }
   });
 }
 
 // function to add data in dom
-function loadData(data) {
+function loadData(data, type) {
   console.log(data);
-  iphones.innerHTML += `
-<div class="mobiles">
+  document.querySelector(`.${type}`).innerHTML += `
+<div class="device">
     <div>
         <img src="${data.image}" alt="${data.title}" />
     </div>
@@ -55,5 +69,5 @@ window.myID = async function (id) {
   data = await data.json();
   console.log(data);
   localStorage.setItem("id", id);
-  window.location.href="/routes/detail.html"
+  window.location.href = "/routes/detail.html";
 };

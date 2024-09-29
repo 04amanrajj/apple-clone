@@ -41,41 +41,62 @@ body {
 }
 
 /* middle part */
-.iphones {
+.mobile,
+.pc,
+.watch,
+.accessories {
   display: flex;
   flex-wrap: wrap;
   padding: 0 140px;
-justify-content: center;
+  justify-content: center;
+
 }
-.mobiles {
+.device {
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr); */
+  display: flex;
   flex: 1;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
   width: 40%;
   margin: 10px;
-border-radius: 30px;
-
+  border-radius: 30px;
+  justify-content: center;
   padding: 10px 0;
-  transition: all 0.3s ease-in-out;
   cursor: pointer;
   box-sizing: border-box;
+  transition: all 0.3s;
+  perspective: 1000px;
 }
 
-.mobiles:hover {
+.device:hover {
   transform: scale(1.01);
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.mobiles img {
+.device img {
   width: 300px;
   height: 300px;
+  margin: 0 20px;
   object-fit: scale-down;
+  transition: transform 0.3s ease;
 }
 
-.mobiles:last-child{
+.device:first-child {
+  width: min-content;
+}
+
+.device:last-child {
   text-align: left;
 }
-.mobiles h1{
+.device p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Number of lines to show */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 50px;
+}
+.device h1 {
   padding: 0;
 }
 /* lower-part */

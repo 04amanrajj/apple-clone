@@ -123,6 +123,7 @@ for (let i of checkout) {
         clearInterval(timerInterval);
         localStorage.removeItem("cart");
       updateCart();
+      window.reload()
       },
     })
   });
