@@ -8,12 +8,12 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
-  margin-top: 50px;
+  margin-top: 49px;
   padding: 0;
   color: #333;
 }
 .container {
-  width: 90%;
+  width: min-content;
   z-index: 200;
   margin: 0 auto;
   background-color: white;
@@ -47,12 +47,16 @@ img {
   background-color: #fff;
   border-radius: 8px;
   margin-bottom: 30px;
+  width: max-content;
 }
 
 .top-text {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  width: max-content;
+  margin-right: auto;
+  /* border: 1px solid black; */
+  justify-content: flex-start;
+  align-items: flex-end;
 }
 
 .top-text h1 {
@@ -67,11 +71,11 @@ img {
 
 .device-info {
   display: flex;
-  margin-bottom: 200px;
+  height: 800px;
 }
 
 .device-img {
-    margin-top: 20px;
+  margin-top: 20px;
   background-size: cover;
   background-position: center;
   height: 600px;
@@ -88,15 +92,18 @@ img {
   transform: scale(1.02);
 }
 
-/* Options and Specifications */
 .specs {
-  margin-top: 30px;
+  margin-bottom: 100px;
+  overflow-y:scroll;
+  scrollbar-width: none;
+  width: min-content;
 }
 
 .specs .ask {
   margin-bottom: 10px;
-  margin-top: 100px;
+  margin-top: 50px;
   display: flex;
+  text-wrap: nowrap;
   align-items: center;
 }
 
@@ -141,7 +148,6 @@ img {
   cursor: pointer;
   width: 100%;
   font-weight: bold;
-
 }
 
 .buy {
@@ -194,9 +200,14 @@ img {
   width: 30%;
   text-align: center;
   height: 50px;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 .storage label:hover {
   background-color: #444;
   color: white;
+}
+
+.storage label:active {
+  transform: scale(0.8);
+  color: #222;
 }
