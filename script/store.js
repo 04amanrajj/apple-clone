@@ -27,7 +27,7 @@ function display(data) {
   // console.log(data.reverse());
   data.forEach((element) => {
     product.innerHTML += `
-  <a href="/routes/iphonestore.html" class="product auto-slide-up">
+  <a href="/routes/iphonestore.html" class="product">
     <img src="${element.image}" alt="${element.title}" />
     <div class="product-content">
       <h2>${element.title}</h2>

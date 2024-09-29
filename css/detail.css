@@ -84,11 +84,15 @@ img {
   border-radius: 10px;
 }
 .device-img img {
-  width: 100%;
+  height: inherit;
+  width: 600px;
   transition: all 0.3s ease-in-out;
+  object-fit: contain;
 }
 .device-img img:hover {
   transform: scale(1.02);
+  cursor: pointer;
+  /* transform: rotateY(180deg); */
 }
 
 .specs {

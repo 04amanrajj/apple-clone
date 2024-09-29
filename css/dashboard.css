@@ -213,4 +213,15 @@ input[type="submit"] {
   right: 1%;
   font-weight: bold;
   border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out
+}
+.logout:hover{
+  background-color: rgb(167, 19, 19);
+  color: #fff;
+  transform: scale(1.02);
+}
+
+.logout:active{
+  transform: scale(0.98);
 }

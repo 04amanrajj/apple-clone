@@ -11,21 +11,25 @@ let formClose = document.querySelector("form button");
 let form = document.querySelector("form");
 let deleteDiv = document.querySelector(".delete");
 let deleteID = document.querySelector(".delete-id");
-let deleteSubmitBtn = document.querySelector(".delete-btn");
-let updateProduct = document.querySelector("button");
-let removeButton = document.querySelector(".remove-button");
+
 // fetch data from the API to display products
 let apiData = async function () {
-  let data = await fetch(baseUrl);
-  data = await data.json();
-  return data;
+  try {
+    let response = await fetch(baseUrl);
+    return await response.json();
+  } catch (error) {
+    console.error("Failed to fetch products:", error);
+    tostTopEnd.fire({
+      icon: "error",
+      title: "Failed to fetch products!",
+    });
+    return [];
+  }
 };
 
 // Search for products
 searchInput.addEventListener("input", async function (event) {
   let data = await apiData();
-  console.log(data);
-  console.log(event.target.value);
   let searchValue = event.target.value.toLowerCase().trim();
   let filteredData = data.filter((item) =>
     item.title.toLowerCase().includes(searchValue)
@@ -35,7 +39,6 @@ searchInput.addEventListener("input", async function (event) {
 
 // display products on the page
 function displayProducts(data) {
-  console.log(data);
   products.innerHTML = "";
   data.forEach((element) => {
     products.innerHTML += `
@@ -51,9 +54,108 @@ function displayProducts(data) {
         </div>
         </div>`;
   });
+
+  // Attach event listeners for delete and edit buttons
+  let deleteProduct = document.querySelectorAll(".delete-button");
+  let updateProduct = document.querySelectorAll(".edit-button");
+
+  deleteProduct.forEach((ele, index) => {
+    ele.addEventListener("click", async () => {
+      let url = baseUrl + "/" + data[index].id;
+      try {
+        let response = await fetch(url, { method: "DELETE" });
+        if (response.ok) {
+          tostTopEnd.fire({
+            icon: "info",
+            title: "Product Deleted!",
+          });
+          refreshProducts();
+        }
+      } catch (error) {
+        tostTopEnd.fire({
+          icon: "error",
+          title: error,
+        });
+      }
+    });
+  });
+
+  updateProduct.forEach((ele, index) => {
+    ele.addEventListener("click", async () => {
+      let url = baseUrl + "/" + data[index].id;
+
+      // Pre-fill the form fields with the current product values
+      Swal.fire({
+        title: "Edit Product",
+        html: `
+            <select id="swal-type" required>
+                <option value="mobile" ${data[index].type === "mobile" ? "selected" : ""}>Mobile</option>
+                <option value="pc" ${data[index].type === "pc" ? "selected" : ""}>Mac</option>
+                <option value="watch" ${data[index].type === "watch" ? "selected" : ""}>Watch</option>
+                <option value="accessories" ${data[index].type === "accessories" ? "selected" : ""}>Accessories</option>
+            </select>
+            <input type="text" id="swal-title" class="swal2-input" placeholder="Product Name" value="${data[index].title}" />
+            <input type="text" id="swal-description" class="swal2-input" placeholder="Description" value="${data[index].description}" />
+            <input type="url" id="swal-imageUrl" class="swal2-input" placeholder="Image URL" value="${data[index].image}" />
+            <input type="number" id="swal-price" class="swal2-input" placeholder="Price" value="${data[index].price}" />
+          `,
+        confirmButtonText: "Update Product",
+        showCancelButton: true,
+        preConfirm: () => {
+          let type = document.getElementById("swal-type").value;
+          let title = document.getElementById("swal-title").value;
+          let image = document.getElementById("swal-imageUrl").value;
+          let description = document.getElementById("swal-description").value;
+          let price = document.getElementById("swal-price").value;
+
+          if (!type || !title || !description || !price) {
+            Swal.showValidationMessage("Please fill out all fields.");
+            return false;
+          }
+
+          return { type, title, image, description, price };
+        },
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          let updatedProduct = result.value;
+
+          try {
+            let response = await fetch(url, {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(updatedProduct),
+            });
+
+            if (!response.ok) {
+              throw new Error("Failed to update product.");
+            }
+
+            tostTopEnd.fire({
+              icon: "success",
+              title: "Product Updated",
+            });
+
+            refreshProducts(); // Refresh the product list
+          } catch (error) {
+            console.error("Error updating product:", error);
+            tostTopEnd.fire({
+              icon: "error",
+              title: "Error: " + error.message,
+            });
+          }
+        }
+      });
+    });
+  });
 }
 
-// display products
+// Refresh product list
+async function refreshProducts() {
+  let data = await apiData();
+  displayProducts(data);
+}
+
+// Display products
 listProducts.addEventListener("click", async function () {
   deleteDiv.style.display = "none";
   products.style.display = "grid";
@@ -62,9 +164,7 @@ listProducts.addEventListener("click", async function () {
     icon: "success",
     title: "Store Refreshed!",
   });
-
-  let data = await apiData();
-  displayProducts(data);
+  refreshProducts();
 });
 
 // Add new product
@@ -78,10 +178,9 @@ addProduct.addEventListener("click", function () {
             <option value="watch">Watch</option>
             <option value="accessories">Accessories</option>
         </select>
-      
         <input type="text" id="swal-title" class="swal2-input" placeholder="Product Name" />
         <input type="text" id="swal-description" class="swal2-input" placeholder="Description" />
-        <input type="url" id="swal-imageUrl" class="swal2-input" placeholder="image url" />
+        <input type="url" id="swal-imageUrl" class="swal2-input" placeholder="Image URL" />
         <input type="number" id="swal-price" class="swal2-input" placeholder="Price" />
       `,
     confirmButtonText: "Add Product",
@@ -101,30 +200,30 @@ addProduct.addEventListener("click", function () {
       return { type, title, image, description, price };
     },
   }).then(async (result) => {
-    let obj = {
-      type: result.value.type,
-      title: result.value.title,
-      image: result.value.image,
-      description: result.value.description,
-      price: result.value.price,
-    };
-    fetch(baseUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(obj),
-    });
-
-    tostTopEnd.fire({
-      icon: "success",
-      title: "Product Launched",
-    });
-
-    let data = await apiData();
-    displayProducts(data);
+    if (result.isConfirmed) {
+      let newProduct = result.value;
+      try {
+        await fetch(baseUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newProduct),
+        });
+        tostTopEnd.fire({
+          icon: "success",
+          title: "Product Launched",
+        });
+        refreshProducts();
+      } catch (error) {
+        tostTopEnd.fire({
+          icon: "error",
+          title: error,
+        });
+      }
+    }
   });
 });
 
-// remove product
+// Remove product by ID
 removeProduct.addEventListener("click", function () {
   Swal.fire({
     title: "Remove Product",
@@ -140,26 +239,23 @@ removeProduct.addEventListener("click", function () {
       }
       return id;
     },
-  }).then((result) => {
+  }).then(async (result) => {
     if (result.isConfirmed) {
       let delID = result.value;
       let delUrl = `${baseUrl}/${delID}`;
-      fetch(delUrl, {
-        method: "DELETE",
-      }).then(async () => {
+      try {
+        await fetch(delUrl, { method: "DELETE" });
         tostTopEnd.fire({
           icon: "info",
           title: "Product Discontinued!",
         });
-
-        let data = await apiData();
-        displayProducts(data);
-      });
+        refreshProducts();
+      } catch (error) {
+        tostTopEnd.fire({
+          icon: "error",
+          title: error,
+        });
+      }
     }
   });
-});
-
-// update a product
-updateProduct.addEventListener("click", async () => {
-  console.log("JI");
 });

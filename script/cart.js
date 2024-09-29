@@ -70,26 +70,24 @@ function updateCart() {
 
     let quantitySelect = productDiv.querySelector(".quantity");
     let productPrice = Number(element.price);
-    let initialQuantity = quantitySelect.value; 
-    totalPrice += productPrice * initialQuantity; 
-
+    let initialQuantity = quantitySelect.value;
+    totalPrice += productPrice * initialQuantity;
 
     updateTotalDisplay(totalPrice);
 
-
     quantitySelect.addEventListener("change", () => {
-      let quantity = parseInt(quantitySelect.value); 
+      let quantity = parseInt(quantitySelect.value);
       totalPrice -= productPrice * (initialQuantity - quantity);
-      initialQuantity = quantity
-      updateTotalDisplay(totalPrice); 
+      initialQuantity = quantity;
+      updateTotalDisplay(totalPrice);
     });
 
     let deleteButton = productDiv.querySelector(".delete");
     deleteButton.addEventListener("click", () => {
-      products.splice(index, 1); 
-      console.log(products)
+      products.splice(index, 1);
+      console.log(products);
       localStorage.setItem("cart", JSON.stringify(products));
-      updateCart(); 
+      updateCart();
     });
   });
 
@@ -120,12 +118,18 @@ for (let i of checkout) {
         }, 100);
       },
       willClose: () => {
+        Swal.fire({
+          icon: "success",
+          title: "Order placed",
+        });
         clearInterval(timerInterval);
-        localStorage.removeItem("cart");
-      updateCart();
-      window.reload()
+        setTimeout(() => {
+          localStorage.removeItem("cart");
+          updateCart();
+          location.reload();
+        }, 3000);
       },
-    })
+    });
   });
 }
 
