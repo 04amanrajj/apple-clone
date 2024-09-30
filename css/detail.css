@@ -144,12 +144,12 @@ img {
 .buy button {
   border-radius: 10px;
   color: #333;
-  background-color: #f9f9fa;
   padding: 5px 10px;
   font-size: 40px;
   border: 1px solid #777;
   cursor: pointer;
-  width: 100%;
+  width: 60%;
+  margin: auto;
   font-weight: bold;
 }
 
