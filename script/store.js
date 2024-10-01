@@ -10,7 +10,7 @@ data(baseUrl);
 async function data(baseUrl) {
   try {
     let data = await fetch(baseUrl);
-    data = await data.json(); // Convert the response to JSON
+    data = await data.json();
     display(data);
   } catch (error) {
     tostTopEnd.fire({
@@ -21,9 +21,9 @@ async function data(baseUrl) {
   }
 }
 function display(data) {
-  data.sort((a, b) => b.id - a.id); //latest products
+  data.sort((a, b) => b.id - a.id); //reverse data
   let product = document.getElementById("products");
-  product.innerHTML = ""; // Clear the existing products
+  product.innerHTML = ""; // clear
   // console.log(data.reverse());
   data.forEach((element) => {
     product.innerHTML += `

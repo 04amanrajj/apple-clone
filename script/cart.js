@@ -39,8 +39,8 @@ if (products.length == 0) {
 
 function updateCart() {
   let middlePart = document.querySelector(".products");
-  middlePart.innerHTML = ""; // Clear existing content
-  let totalPrice = 0; // Initialize total price for this update
+  middlePart.innerHTML = ""; // clear
+  let totalPrice = 0; // Initialize total 
 
   products.forEach((element, index) => {
     let productDiv = document.createElement("div");
