@@ -1,14 +1,11 @@
-import { slide } from "/utils/utils.js";
+import { slide,isUserLoggedin } from "/utils/utils.js";
 import { header, footer } from "/resources/preHtml.js";
 header();
+isUserLoggedin()
 footer();
 slide();
 
-let baseUrl = "http://localhost:4000/products";
-let iphones = document.querySelector(".mobile");
-let mac = document.querySelector(".pc");
-let watches = document.querySelector(".watch");
-let accessories = document.querySelector(".accessories");
+let baseUrl = "https://mock-server-b514.onrender.com/products";
 
 // Fetch data from the API
 async function apiData() {

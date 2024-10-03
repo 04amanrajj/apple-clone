@@ -1,5 +1,6 @@
-import { tostTopEnd, slide } from "/utils/utils.js";
+import { slide,isUserLoggedin } from "/utils/utils.js";
 import { header, footer } from "/resources/preHtml.js";
+isUserLoggedin()
 header();
 footer();
 slide();
@@ -8,7 +9,7 @@ let id = JSON.parse(localStorage.getItem("cart")) || [];
 let total = document.querySelector(".total");
 let total2 = document.querySelector(".totall");
 let checkout = document.querySelectorAll(".checkout");
-let baseUrl = "http://localhost:4000/products/";
+let baseUrl = "https://mock-server-b514.onrender.com/products/";
 let products = [];
 let price = 0;
 
@@ -106,8 +107,8 @@ for (let i of checkout) {
     let timerInterval;
     Swal.fire({
       title: "Processing...",
-      html: "Wait <b></b> milliseconds.",
-      timer: 5000,
+      html: "Wait.",
+      timer: 4000,
       timerProgressBar: true,
       allowOutsideClick: false,
       didOpen: () => {

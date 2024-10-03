@@ -43,24 +43,15 @@ const tostBottomEnd = Swal.mixin({
   toast: true,
   position: "bottom-end",
   showConfirmButton: false,
-  timer: 3000,
-  timerProgressBar: true,
+  timer: 2000,
+  timerProgressBar: false,
 });
 
 // authantication
 function isUserLoggedin() {
   document.addEventListener("DOMContentLoaded", function () {
     let loggedInUser = localStorage.getItem("loggedInUser");
-    let savedUser = localStorage.getItem("loggedInUser");
     // console.log(savedUser);
-    if (savedUser != null) {
-      isUserLoggedin();
-      tostTopEnd.fire({
-        icon: "success",
-        title: "Logged in successfully",
-      });
-    }
-
     if (loggedInUser) {
       let loginLink = document.querySelector(".user");
       if (loginLink) {

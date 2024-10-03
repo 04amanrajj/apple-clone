@@ -1,6 +1,7 @@
-import { slide } from "/utils/utils.js";
+import { slide,isUserLoggedin} from "/utils/utils.js";
 import { header,footer } from "/resources/preHtml.js";
 header()
+isUserLoggedin()
 footer()
 slide()
 

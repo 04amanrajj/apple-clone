@@ -1,13 +1,14 @@
-import { tostTopEnd, slide } from "/utils/utils.js";
+import { tostTopEnd, slide,isUserLoggedin } from "/utils/utils.js";
 import { header, footer } from "/resources/preHtml.js";
 header();
+isUserLoggedin()
 footer();
 slide();
 
 // main code
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let id = localStorage.getItem("id");
-let baseUrl = "http://localhost:4000/products/" + id;
+let baseUrl = "https://mock-server-b514.onrender.com/products/" + id;
 let productImg = document.querySelector(".device-img img");
 let productName = document.getElementsByClassName("name");
 let description = document.querySelector(".description");

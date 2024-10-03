@@ -1,10 +1,11 @@
-import { tostTopEnd, slide } from "/utils/utils.js";
+import { tostTopEnd, slide,isUserLoggedin } from "/utils/utils.js";
 import { header, footer } from "/resources/preHtml.js";
 header();
 footer();
 slide();
+isUserLoggedin()
 
-let baseUrl = "http://localhost:4000/products";
+let baseUrl = "https://mock-server-b514.onrender.com/products";
 data(baseUrl);
 // Fetch data from the API
 async function data(baseUrl) {

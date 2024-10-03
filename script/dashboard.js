@@ -1,16 +1,13 @@
-import { tostTopEnd } from "/utils/utils.js";
+import { tostTopEnd, isUserLoggedin } from "/utils/utils.js";
+isUserLoggedin();
 
-let baseUrl = "http://localhost:4000/products";
+let baseUrl = "https://mock-server-b514.onrender.com/products";
 
 let products = document.getElementById("products");
 let searchInput = document.getElementById("search");
 let listProducts = document.getElementById("list-products");
 let addProduct = document.getElementById("add-product");
 let removeProduct = document.getElementById("remove-product");
-let formClose = document.querySelector("form button");
-let form = document.querySelector("form");
-let deleteDiv = document.querySelector(".delete");
-let deleteID = document.querySelector(".delete-id");
 
 // fetch data from the API to display products
 let apiData = async function () {
@@ -89,15 +86,31 @@ function displayProducts(data) {
         title: "Edit Product",
         html: `
             <select id="swal-type" required>
-                <option value="mobile" ${data[index].type === "mobile" ? "selected" : ""}>Mobile</option>
-                <option value="pc" ${data[index].type === "pc" ? "selected" : ""}>Mac</option>
-                <option value="watch" ${data[index].type === "watch" ? "selected" : ""}>Watch</option>
-                <option value="accessories" ${data[index].type === "accessories" ? "selected" : ""}>Accessories</option>
+                <option value="mobile" ${
+                  data[index].type === "mobile" ? "selected" : ""
+                }>Mobile</option>
+                <option value="pc" ${
+                  data[index].type === "pc" ? "selected" : ""
+                }>Mac</option>
+                <option value="watch" ${
+                  data[index].type === "watch" ? "selected" : ""
+                }>Watch</option>
+                <option value="accessories" ${
+                  data[index].type === "accessories" ? "selected" : ""
+                }>Accessories</option>
             </select>
-            <input type="text" id="swal-title" class="swal2-input" placeholder="Product Name" value="${data[index].title}" />
-            <input type="text" id="swal-description" class="swal2-input" placeholder="Description" value="${data[index].description}" />
-            <input type="url" id="swal-imageUrl" class="swal2-input" placeholder="Image URL" value="${data[index].image}" />
-            <input type="number" id="swal-price" class="swal2-input" placeholder="Price" value="${data[index].price}" />
+            <input type="text" id="swal-title" class="swal2-input" placeholder="Product Name" value="${
+              data[index].title
+            }" />
+            <input type="text" id="swal-description" class="swal2-input" placeholder="Description" value="${
+              data[index].description
+            }" />
+            <input type="url" id="swal-imageUrl" class="swal2-input" placeholder="Image URL" value="${
+              data[index].image
+            }" />
+            <input type="number" id="swal-price" class="swal2-input" placeholder="Price" value="${
+              data[index].price
+            }" />
           `,
         confirmButtonText: "Update Product",
         showCancelButton: true,
@@ -153,17 +166,15 @@ function displayProducts(data) {
 async function refreshProducts() {
   let data = await apiData();
   displayProducts(data);
-}
-
-// Display products
-listProducts.addEventListener("click", async function () {
-  deleteDiv.style.display = "none";
-  products.style.display = "grid";
-  document.querySelector("form").style.display = "none";
   tostTopEnd.fire({
     icon: "success",
     title: "Store Refreshed!",
   });
+}
+
+// Display products
+listProducts.addEventListener("click", async function () {
+  products.style.display = "grid";
   refreshProducts();
 });
 

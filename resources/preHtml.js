@@ -396,7 +396,7 @@ header {
             <div class="dropdown">
               <a href="/routes/store.html" class="dropdown-toggle">Accessories</a>
             </div>
-            <a href="/routes/login.html">Login</a>
+            <a href="/routes/login.html" class="user">Login</a>
             <a href="#"><img src="/images/search.svg" alt="search" /></a>
             <a href="/routes/cart.html">
               <img src="/images/bag-navbar-logo.svg" alt="cart" />

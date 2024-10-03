@@ -3,6 +3,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign In - Secure Checkout</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/css/login.css" />
   </head>
   <body>
@@ -14,24 +15,22 @@
           type="text"
           id="username"
           name="username"
+          placeholder="Name"
           required
-          placeholder="Email or Phone Number"
         />
         <input
           type="password"
           id="password"
           name="password"
-          required
           placeholder="Password"
+          required
         />
         <input type="submit" id="submit" value="Sign In" />
       </form>
       <div class="extra">
-        <input type="checkbox" name="" id="" />Remember me
         <br />
-        <a href="/routes/login.html">Forgot your password? ↗</a>
         <p>
-          Don't have an Apple Account?<a href="/routes/login.html">
+          Don't have an Apple Account?<a href="#" onclick="createNewUser()">
             Create yours now. ↗</a
           >
         </p>
