@@ -15,3 +15,7 @@ This is a responsive web clone of the Apple website built using HTML, CSS, and J
 - **HTML**: Building the web pages.
 - **CSS**: Styling for Better layout.
 - **JavaScript**: Fetching data, handling user interactions, managing the cart system etc...
+
+## Note
+
+- **How to access admin page?** if user's password=='admin' he/she will redirect to admin's page
