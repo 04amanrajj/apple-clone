@@ -17,6 +17,11 @@
   width: 300px;
   backdrop-filter: blur(10px);
 }
+.left-panel h1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
 .left-panel img {
   width: 100%;
@@ -111,17 +116,14 @@
 }
 
 .product p {
-  display: flex;
   flex-wrap: wrap;
   overflow: hidden;
   margin: 2px;
   text-align: left;
-
   display: -webkit-box;
   -webkit-line-clamp: 3; /* Number of lines to show */
   line-clamp: 3;
   -webkit-box-orient: vertical;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 .product button {
@@ -214,14 +216,14 @@ input[type="submit"] {
   font-weight: bold;
   border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out
+  transition: all 0.3s ease-in-out;
 }
-.logout:hover{
+.logout:hover {
   background-color: rgb(167, 19, 19);
   color: #fff;
   transform: scale(1.02);
 }
 
-.logout:active{
+.logout:active {
   transform: scale(0.98);
 }

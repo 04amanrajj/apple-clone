@@ -35,11 +35,11 @@ h2 {
 }
 
 /* Top Banner */
-img {
+header+img {
   display: block;
   cursor: pointer;
-  margin-bottom: 20px;
   margin: auto;
+  margin-bottom: 20px;
 }
 
 .upper-part {
