@@ -152,6 +152,11 @@ adminBtn.addEventListener("click", (e) => {
     if (response.value.toLowerCase().trim() == "admin") {
       localStorage.setItem("loggedInUser", username.value);
       window.location.href = "/routes/dashboard.html";
+    }else{
+      tostTopEnd.fire({
+        icon: "error",
+        title: "Code mismatched",
+      });
     }
   });
 });
