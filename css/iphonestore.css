@@ -64,7 +64,6 @@ body {
   cursor: pointer;
   box-sizing: border-box;
   transition: all 0.3s;
-  perspective: 1000px;
 }
 
 .device:hover {
@@ -78,10 +77,6 @@ body {
   margin: 0 20px;
   object-fit: scale-down;
   transition: transform 0.3s ease;
-}
-
-.device:first-child {
-  width: min-content;
 }
 
 .device:last-child {
@@ -112,7 +107,92 @@ body {
   cursor: pointer;
 }
 
-a{
+a {
   color: #0071e3;
   text-decoration: none;
 }
+@media (max-width: 768px) {
+  header + img {
+    display: none;
+  }
+
+  .lower-part img {
+    object-fit: cover;
+    height: 15.3%;
+    width: 100%;
+  }
+
+  .top-text {
+    padding: 0 10px;
+  }
+
+  .top-text h1 {
+    font-size: 40px;
+  }
+
+  .top-text h2 {
+    font-size: 20px;
+  }
+
+  .upper-part video {
+    width: 100%;
+    height: 30%;
+    object-fit: cover;
+  }
+
+  .middle-part>h1 {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 10px ;
+  }
+
+  .mobile,
+  .pc,
+  .watch,
+  .accessories {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    padding: 0 10px;
+    gap: 20px;
+  }
+
+  .device {
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 10px ;
+  }
+
+  .device img {
+    width: 100%;
+    margin: 0 auto;
+    object-fit: scale-down;
+  }
+
+  .device h1 {
+    font-size: 24px;
+  }
+
+  .device p {
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 33px;
+  }
+
+  .device:hover {
+    transform: scale(1.01);
+    box-shadow: none;
+  }
+  .device img:hover{
+    transform: scale(1.1);
+  }
+
+}
+

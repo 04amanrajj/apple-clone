@@ -203,162 +203,204 @@ export function header() {
   const headerHTML = `
   <style>
       .top-navbar {
-  background-color: #f7f7f7d5;
-  display: flex;
-  position: fixed;
-  z-index: 1000;
-  align-items: center;
-  width: 100%;
-  justify-content: center;
-  margin: 0 auto;
-  box-sizing: border-box;
-  backdrop-filter: blur(10px);
-}
+        background-color: #f7f7f7d5;
+        display: flex;
+        position: fixed;
+        z-index: 1000;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        margin: 0 auto;
+        box-sizing: border-box;
+        backdrop-filter: blur(10px);
+        top: 0;
+        left: 0;
+      }
 
-.logo {
-  margin-right: 20px;
-}
+      .logo {
+        margin-right: 20px;
+      }
 
-.top-navbar a {
-  color: #333;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 400;
-  margin-right: 40px;
-}
+      .top-navbar a {
+        color: #333;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 400;
+        margin-right: 40px;
+      }
 
-.top-navbar a:hover {
-  color: #06c;
-}
+      .top-navbar a:hover {
+        color: #06c;
+      }
 
-.top-navbar a:last-child {
-  margin-right: 0;
-}
+      .top-navbar a:last-child {
+        margin-right: 0;
+      }
 
-.top-navbar .fas.fa-search {
-  margin-right: 20px;
-}
+      .top-navbar .fas.fa-search {
+        margin-right: 20px;
+      }
 
-.top-navbar .fas.fa-shopping-bag {
-  margin-right: 0;
-}
+      .top-navbar .fas.fa-shopping-bag {
+        margin-right: 0;
+      }
 
-.store,
-.mac {
-  font-weight: 600;
-}
+      .store,
+      .mac {
+        font-weight: 600;
+      }
 
-.logo + a {
-  margin-left: 20px;
-}
+      .logo + a {
+        margin-left: 20px;
+      }
 
-.top-navbar > a,
-.top-navbar > .logo {
-  display: inline-block;
-  vertical-align: middle;
-}
+      .top-navbar > a,
+      .top-navbar > .logo {
+        display: inline-block;
+        vertical-align: middle;
+      }
 
-@media (max-width: 768px) {
-  .top-navbar {
-    padding: 15px 20px;
-  }
-  .top-navbar a {
-    font-size: 15px;
-  }
-  .top-navbar .fas {
-    font-size: 16px;
-  }
-}
+      @media (max-width: 768px) {
+        .top-navbar {
+          padding: 15px 20px;
+        }
+        .top-navbar a {
+          font-size: 15px;
+        }
+        .top-navbar .fas {
+          font-size: 16px;
+        }
+      }
 
-@media (max-width: 480px) {
-  .top-navbar {
-    padding: 10px 15px;
-  }
-  .top-navbar a {
-    font-size: 13px;
-  }
-  .top-navbar .fas {
-    font-size: 14px;
-  }
-}
+      @media (max-width: 480px) {
+        .top-navbar {
+          padding: 10px 15px;
+        }
+        .top-navbar a {
+          font-size: 13px;
+        }
+        .top-navbar .fas {
+          font-size: 14px;
+        }
+      }
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-right: 10px;
-}
-.nav-links div {
-  color: #1d1d1f;
-  text-decoration: none;
-  margin-right: 25px;
-}
-header {
-  position: relative;
-}
+      .nav-links {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-right: 10px;
+      }
+      .nav-links div {
+        color: #1d1d1f;
+        text-decoration: none;
+        margin-right: 25px;
+      }
+      header {
+        position: relative;
+      }
 
-.dropdown-content {
-  padding: 0 40px;
-  justify-content: center;
-  background-color: #f7f7f7d5;
-  z-index: 1;
-  align-items: flex-start;
-  width: 100%;
-  box-sizing: border-box;
-  backdrop-filter: blur(10px);
-  text-align: left;
-  opacity: 0;
-  visibility: hidden;
-  max-height: 0;
-  overflow: hidden;
-  position: fixed;
-  top: 46px;
-  left: 0;
-  right: 0;
-  transition: max-height 0.5s ease-in-out, opacity 3s ease-out,
-  visibility 3s;
-  display: flex;
-  flex-direction: row;
-}
+      .dropdown-content {
+        padding: 0 40px;
+        justify-content: center;
+        background-color: #f7f7f7d5;
+        z-index: 1;
+        align-items: flex-start;
+        width: 100%;
+        box-sizing: border-box;
+        backdrop-filter: blur(10px);
+        text-align: left;
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        overflow: hidden;
+        position: fixed;
+        top: 46px;
+        left: 0;
+        right: 0;
+        transition: max-height 0.5s ease-in-out, opacity 3s ease-out, visibility 3s;
+        display: flex;
+        flex-direction: row;
+      }
 
-.top-navbar:hover + .dropdown-content,
-.dropdown-content:hover {
-  visibility: visible;
-  opacity: 1;
-  max-height: 400px;
-  transition: max-height 0.5s ease-in-out, opacity 0.3s ease-out;
-}
+      .top-navbar:hover + .dropdown-content,
+      .dropdown-content:hover {
+        visibility: visible;
+        opacity: 1;
+        max-height: 400px;
+        transition: max-height 0.5s ease-in-out, opacity 0.3s ease-out;
+      }
 
-.top-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 10;
-}
+      .dropdown-content .column {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        margin: 10px 80px;
+      }
+      .dropdown-content .column h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+        margin: 0 0 10px 0;
+      }
+      .dropdown-content .column a {
+        font-size: 17px;
+        font-weight: 400;
+        color: #1d1d1f;
+        text-decoration: none;
+        margin: 5px 0;
+      }
+      .dropdown-content .column a:first-child {
+        font-weight: 600;
+      }
 
-.dropdown-content .column {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  margin: 10px 80px;
-}
-.dropdown-content .column h3 {
-  font-size: 18px;
-  font-weight: 600;
-  color: #333;
-  margin: 0 0 10px 0;
-}
-.dropdown-content .column a {
-  font-size: 17px;
-  font-weight: 400;
-  color: #1d1d1f;
-  text-decoration: none;
-  margin: 5px 0;
-}
-.dropdown-content .column a:first-child {
-  font-weight: 600;
-}
+      @media (max-width: 768px) {
+        .top-navbar {
+          padding: 0 10px;
+          justify-content: space-between;
+        }
+        .top-navbar a {
+          font-size: 12px;
+          margin-right: 10px;
+        }
+        .top-navbar .fas {
+          font-size: 12px;
+          margin-right: 10px;
+        }
+        .logo {
+          margin-right: 10px;
+        }
+        .nav-links div {
+          margin-right: 10px;
+          font-size: 20px;
+        }
+        .dropdown-content {
+          padding: 0 10px;
+          flex-direction: column;
+        }
+        .dropdown-content .column {
+          margin: 5px 0;
+        }
+        .dropdown-content .column a {
+          font-size: 14px;
+        }
+        .nav-links > div:nth-child(n + 1):nth-child(-n + 10) {
+          display: none;
+        }
+        .nav-links > div + a {
+          font-size: 20px;
+          margin-right: 20px;
+          font-weight: bold;
+        }
+        .searchicon {
+          display: none;
+        }
+
+        .top-navbar:hover + .dropdown-content,
+        .dropdown-content:hover {
+          visibility: hidden;
+        }
+      }
+
   </style>
       <header>
         <div class="top-navbar">
@@ -397,7 +439,7 @@ header {
               <a href="/routes/store.html" class="dropdown-toggle">Accessories</a>
             </div>
             <a href="/routes/login.html" class="user">Login</a>
-            <a href="#"><img src="/images/search.svg" alt="search" /></a>
+            <a href="#" class="searchicon"><img src="/images/search.svg" alt="search" /></a>
             <a href="/routes/cart.html">
               <img src="/images/bag-navbar-logo.svg" alt="cart" />
             </a>
