@@ -35,7 +35,7 @@ h2 {
 }
 
 /* Top Banner */
-header+img {
+header + img {
   display: block;
   cursor: pointer;
   margin: auto;
@@ -97,7 +97,7 @@ header+img {
 
 .specs {
   margin-bottom: 100px;
-  overflow-y:scroll;
+  overflow-y: scroll;
   scrollbar-width: none;
   width: min-content;
 }
@@ -213,4 +213,57 @@ header+img {
 .storage label:active {
   transform: scale(0.8);
   color: #222;
+}
+
+@media (max-width: 768px) {
+  header + img {
+    object-fit: cover;
+    width: 100%;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  .device-info {
+    width: 100px;
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .device-img {
+  }
+  .device-img img {
+ 
+  }
+  .specs{
+    overflow-y: visible;
+    height:min-content;
+  }
+  .buy button {
+    font-size: 1.2rem; 
+  }
+
+  .option-1 h1,
+  .option-2 h1,
+  .option-3 h1,
+  .option-5 h1 {
+    font-size: 1.25rem; 
+  }
+
+  .option-1 p,
+  .option-2 p,
+  .option-3 p,
+  .option-5 p {
+    font-size: 0.9rem; 
+  }
+
+  .lower-part img {
+    object-fit: cover;
+    height: 15.3%;
+    width: 100%;
+  }
 }
