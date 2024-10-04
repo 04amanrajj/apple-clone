@@ -18,4 +18,4 @@ This is a responsive web clone of the Apple website built using HTML, CSS, and J
 
 ## Note
 
-- **How to access admin page?** if user's password=='admin' he/she will redirect to admin's page
+- **How to access admin page?** use security code 'admin' while signing in 
