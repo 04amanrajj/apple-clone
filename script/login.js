@@ -37,10 +37,6 @@ async function checkUser(url, user) {
         console.log(user);
         window.location.href = "/index.html";
       }
-      if (user.password == "admin") {
-        localStorage.setItem("loggedInUser", user.username);
-        window.location.href = "/routes/dashboard.html";
-      }
     });
 
     if (!userFound) {
@@ -122,3 +118,40 @@ async function postData(url, user) {
     });
   }
 }
+
+// add-on admin access
+let adminBtn = document.querySelector(".admin-signin");
+adminBtn.disabled = true;
+
+username.addEventListener("input", checkInputs);
+password.addEventListener("input", checkInputs);
+
+function checkInputs() {
+  if (username.value && password.value) adminBtn.disabled = false;
+}
+adminBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  Swal.fire({
+    title: "Enter the security code",
+    html: `
+      <input type="text" id="swal-code" class="swal2-input" placeholder="security code"/>
+    `,
+    confirmButtonText: "Check",
+    showCancelButton: true,
+    preConfirm: () => {
+      let security = document.getElementById("swal-code").value;
+
+      if (!security) {
+        Swal.showValidationMessage("enter the code.");
+        return false;
+      }
+
+      return security;
+    },
+  }).then((response) => {
+    if (response.value.toLowerCase().trim() == "admin") {
+      localStorage.setItem("loggedInUser", username.value);
+      window.location.href = "/routes/dashboard.html";
+    }
+  });
+});
