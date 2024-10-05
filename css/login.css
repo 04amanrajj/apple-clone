@@ -71,3 +71,10 @@ a {
   color: #007bff;
   text-decoration: none;
 }
+
+@media (max-width: 768px) {
+  form {
+    width: 100%;
+    margin: 0;
+  }
+}

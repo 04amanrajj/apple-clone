@@ -178,7 +178,7 @@ a {
   .device p {
     font-size: 14px;
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* Number of lines to show */
+    -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -193,6 +193,20 @@ a {
   .device img:hover{
     transform: scale(1.1);
   }
+
+  .lower-part div h1{
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+  .lower-part div img{
+    margin: 10px;
+    width: 90%;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    height: auto;
+  }
+
 
 }
 
