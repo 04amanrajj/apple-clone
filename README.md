@@ -3,7 +3,7 @@
 This is a responsive web clone of the Apple website built using HTML, CSS, and JavaScript. It includes a JSON server to simulate a backend for product data, user authentication, and admin management.
 
 ## Features
-
+- **Responsive**: Working on it
 - **Product Listings**: Display products from a mock JSON server.
 - **Interactive UI**: Product details, images, and user interactions.
 - **Login/Registration**: Users can log in or register, with data stored on the server.
