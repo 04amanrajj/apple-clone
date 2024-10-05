@@ -217,7 +217,7 @@ export function header() {
               <a href="/routes/store.html" class="dropdown-toggle">iPad</a>
             </div>
             <div class="dropdown">
-              <a href="/routes/iphonestore.html" class="dropdown-toggle">iPhone</a>
+              <a href="/routes/products.html" class="dropdown-toggle">iPhone</a>
             </div>
             <div class="dropdown">
               <a href="/routes/store.html" class="dropdown-toggle">Watch</a>

@@ -125,7 +125,7 @@
   margin: 2px;
   text-align: left;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Number of lines to show */
+  -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
@@ -236,6 +236,13 @@ input[type="submit"] {
   .container {
     flex-direction: column;
   }
+  .right-panel > div h1 {
+    font-size: 30px;
+  }
+  .right-top input[type="text"] {
+    box-sizing: border-box;
+    width: 50%;
+  }
   #products {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
@@ -258,8 +265,22 @@ input[type="submit"] {
     flex-direction: row;
   }
   .left-panel div a {
+    text-decoration: none;
+    font-size: 18px;
     width: 33%;
   }
+
+  .left-panel a:hover {
+    background-color: #fff;
+    color: #333;
+  }
+
+  .left-panel a:active {
+    background-color: #333;
+    color: #fff;
+    border-radius: 10px;
+  }
+
   .right-panel {
     padding: 0;
   }
@@ -271,5 +292,10 @@ input[type="submit"] {
     transform: scale(1.02);
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
+  }
+
+  .logout {
+    bottom: 3%;
+    right: 5%;
   }
 }
