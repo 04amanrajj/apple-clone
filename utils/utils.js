@@ -1,4 +1,4 @@
-export function slide() {
+function slide() {
   window.addEventListener("scroll", function () {
     const slideElements = document.querySelectorAll(".slide-up");
 
@@ -15,12 +15,12 @@ export function slide() {
   });
   document.addEventListener("DOMContentLoaded", function () {
     const slideElements = document.querySelectorAll(".auto-slide-up");
-  
+
     slideElements.forEach((el) => {
       const rect = el.getBoundingClientRect();
       const windowHeight =
         window.innerHeight || document.documentElement.clientHeight;
-  
+
       // Check if the element is in the viewport
       if (rect.top <= windowHeight - 100) {
         // Adjust 100 for when the animation starts
@@ -28,7 +28,6 @@ export function slide() {
       }
     });
   });
-  
 }
 
 const tostTopEnd = Swal.mixin({
@@ -62,8 +61,17 @@ function isUserLoggedin() {
   });
 }
 
-export {
-  tostTopEnd,
-  tostBottomEnd,
-  isUserLoggedin,
+window.sendData = (element) => {
+  const text = element.textContent || element;
+  localStorage.setItem("productType", text);
 };
+
+function serverConfig() {
+  let serverUrl = "https://mock-server-b514.onrender.com";
+  let devUrl = "http://localhost:4000";
+
+  let baseUrl = devUrl;
+  return baseUrl;
+}
+
+export { tostTopEnd, tostBottomEnd, isUserLoggedin, serverConfig, slide };

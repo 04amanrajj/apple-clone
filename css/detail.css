@@ -1,8 +1,10 @@
-/* General Reset */
+html{
+  margin: 0;
+  width: 100%;
+}
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -35,7 +37,7 @@ h2 {
 }
 
 /* Top Banner */
-header+img {
+header + img {
   display: block;
   cursor: pointer;
   margin: auto;
@@ -97,7 +99,7 @@ header+img {
 
 .specs {
   margin-bottom: 100px;
-  overflow-y:scroll;
+  overflow-y: scroll;
   scrollbar-width: none;
   width: min-content;
 }
@@ -213,4 +215,109 @@ header+img {
 .storage label:active {
   transform: scale(0.8);
   color: #222;
+}
+
+@media (max-width: 768px) {
+  .topbar-img {
+    object-fit: cover;
+    width: 100%;
+  }
+  
+.container div{
+  width: 100%;
+  box-sizing: border-box;
+}
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  .device-info {
+    height: max-content;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .device-img {
+    height: auto;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .device-img img {
+    height: 300px;
+    object-fit: contain;
+    width: 100%;
+  }
+
+  .specs {
+    margin-top: 15%;
+    box-sizing: border-box;
+    width: 400px;
+    overflow-y: visible;
+    height: auto;
+    margin-bottom: 0;
+  }
+
+  .buy button {
+    font-size: 1.2rem;
+    position: fixed;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .ask {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .option-1 h1,
+  .option-2 h1,
+  .option-3 h1,
+  .option-5 h1 {
+    font-size: 1.2rem;
+  }
+
+  .option-1 p,
+  .option-2 p,
+  .option-3 p,
+  .option-5 p {
+    font-size: 0.9rem;
+  }
+
+  .option-5 p {
+    margin-bottom: 10%;
+  }
+
+  .lower-part img {
+    object-fit: cover;
+    height: auto;
+    width: 100%;
+  }
+
+  .storage {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    flex-direction: column;
+    gap: 20px 0px;
+    place-items: center;
+  }
+  .storage div {
+    width: min-content;
+  }
 }

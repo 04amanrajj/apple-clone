@@ -1,12 +1,27 @@
-import { slide,isUserLoggedin } from "/utils/utils.js";
+import { slide, isUserLoggedin, serverConfig } from "/utils/utils.js";
 import { header, footer } from "/resources/preHtml.js";
 header();
-isUserLoggedin()
+isUserLoggedin();
 footer();
 slide();
 
-let baseUrl = "https://mock-server-b514.onrender.com/products";
+const productType = localStorage.getItem("productType") || "accessories";
+console.log(productType);
 
+const productName = document.querySelector(".product-name");
+productName.textContent = productType;
+
+const productNameHeading = document.querySelector(".product-name-heading");
+productNameHeading.textContent = `Get to know ${productType}`;
+
+console.log(productName, productType);
+
+const productVideo = document.querySelector(".product-video");
+productVideo.src = `/images/iphone-page/${productType.toLocaleLowerCase()||iphone}.mp4`;
+
+let baseUrl = serverConfig();
+baseUrl = `${baseUrl}/products?type=${productType.toLocaleLowerCase()}`;
+console.log(baseUrl)
 // Fetch data from the API
 async function apiData() {
   let data = await fetch(baseUrl);
@@ -19,30 +34,13 @@ apiData();
 function display(data) {
   data.reverse();
   data.forEach((element) => {
-    // console.log(element)
-    console.log(element);
-    if (element.type == "mobile") {
-      loadData(element, element.type);
-    }
-    if (element.type == "pc") {
-      console.log(element.type);
-      loadData(element, element.type);
-    }
-    if (element.type == "watch") {
-      console.log(element.type);
-      loadData(element, element.type);
-    }
-    if (element.type == "accessories") {
-      console.log(element.type);
-      loadData(element, element.type);
-    }
+    loadData(element);
   });
 }
 
 // function to add data in dom
-function loadData(data, type) {
-  console.log(data);
-  document.querySelector(`.${type}`).innerHTML += `
+function loadData(data) {
+  document.querySelector(".products").innerHTML += `
 <div class="device">
     <div>
         <img src="${data.image}" alt="${data.title}" />
@@ -64,7 +62,7 @@ function loadData(data, type) {
 window.myID = async function (id) {
   let data = await fetch(baseUrl + "/" + id);
   data = await data.json();
-  console.log(data);
+  // console.log(data);
   localStorage.setItem("id", id);
   window.location.href = "/routes/detail.html";
 };

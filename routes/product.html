@@ -2,12 +2,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/iphonestore.css" />
+    <link rel="stylesheet" href="/css/product.css" />
     <link rel="stylesheet" href="/css/global.css" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
     <title>iPhone - Apple</title>
   </head>
   <body>
+    <section id="nav-bar-pre"></section>
     <img
       style="cursor: pointer"
       src="/images/iphone-page/apple.com_2024-09-28_14_49_47.png"
@@ -15,24 +16,18 @@
     <div class="container">
       <div class="upper-part auto-slide-up">
         <div class="top-text">
-          <h1>iPhone</h1>
+          <h1 class="product-name">iPhone</h1>
           <h2>Designed to be loved</h2>
         </div>
         <div class="video">
-          <video autoplay="true" loop="true">
-            <source src="/images//iphone-page/xlarge.mp4" type="video/mp4" />
+          <video class="product-video" autoplay="true" loop="true">
+            <source  src="/images//iphone-page/xlarge.mp4" type="video/mp4" />
           </video>
         </div>
       </div>
       <div class="middle-part slide-up">
-        <h1>Get to know iPhone</h1>
-        <div class="mobile"></div>
-        <h1>Get to know Mac</h1>
-        <div class="pc"></div>
-        <h1>Get to know Apple Watch</h1>
-        <div class="watch"></div>
-        <h1>Get to know Apple's Accessories</h1>
-        <div class="accessories"></div>
+        <h1 class="product-name-heading">Get to know iPhone</h1>
+        <div class="products"></div>
       </div>
       <div class="lower-part">
         <div class="slide-up">
@@ -61,6 +56,6 @@
       </div>
     </div>
   </body>
-  <script type="module" src="/script/iphone-store.js"></script>
+  <script type="module" src="/script/product.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
