@@ -297,5 +297,6 @@ input[type="submit"] {
   .logout {
     bottom: 3%;
     right: 5%;
+    text-decoration: none;
   }
 }

@@ -350,11 +350,19 @@ footer {
 .footer-bottom p {
   margin: 5px 0;
 }
-  @media (max-width: 480px) {
-    .footer{
-      display:none;
-    }
+@media (max-width:768px){
+
+  .footer{
+    display:grid;
+    grid-template-columns:repeat(6,auto);
   }
+
+}
+@media (max-width: 480px) {
+  .footer{
+    display:none;
+  }
+}
   </style>
       <div class="footer">
           <div class="footer-column">
