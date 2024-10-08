@@ -211,34 +211,33 @@ export function header() {
               <a href="/routes/store.html" class="store">Store</a>
             </div>
             <div class="dropdown">
-              <a href="/routes/product.html" onclick="sendData(this)" class="dropdown-toggle">Mac</a>
+              <a href="/routes/product.html" type="Mac" onclick="sendData(this)" class="dropdown-toggle">Mac</a>
             </div>
             <div class="dropdown">
-              <a href="/routes/product.html" onclick="sendData(this)" class="dropdown-toggle">iPad</a>
+              <a href="/routes/product.html" type="iPad" onclick="sendData(this)" class="dropdown-toggle">iPad</a>
             </div>
             <div class="dropdown">
-              <a href="/routes/product.html" onclick="sendData(this)" class="dropdown-toggle">iPhone</a>
+              <a href="/routes/product.html" type="iPhone" onclick="sendData(this)" class="dropdown-toggle">iPhone</a>
             </div>
             <div class="dropdown">
-              <a href="/routes/product.html" onclick="sendData(this)" class="dropdown-toggle">Watch</a>
+              <a href="/routes/product.html" type="Watch" onclick="sendData(this)" class="dropdown-toggle">Watch</a>
             </div>
             <div class="dropdown">
-              <a href="/routes/product.html" onclick="sendData(this)" class="dropdown-toggle">Vision</a>
+              <a href="/routes/product.html" type="Accessories" onclick="sendData(this)" class="dropdown-toggle">Vision</a>
             </div>
             <div class="dropdown">
-              <a href="/routes/product.html" onclick="sendData(this)" class="dropdown-toggle">AirPods</a>
+              <a href="/routes/product.html" type="Accessories" onclick="sendData(this)" class="dropdown-toggle">AirPods</a>
             </div>
             <div class="dropdown">
-              <a href="/routes/product.html" onclick="sendData(this)" class="dropdown-toggle">TV & Home</a>
+              <a href="/routes/product.html" type="Accessories" onclick="sendData(this)" class="dropdown-toggle">TV & Home</a>
             </div>
             <div class="dropdown">
-              <a href="/routes/product.html" onclick="sendData(this)" class="dropdown-toggle">Entertainment</a>
+              <a href="/routes/product.html" type="Accessories" onclick="sendData(this)" class="dropdown-toggle">Entertainment</a>
             </div>
             <div class="dropdown">
-              <a href="/routes/product.html" onclick="sendData(this)" class="dropdown-toggle">Accessories</a>
+              <a href="/routes/product.html" type="Accessories" onclick="sendData(this)" class="dropdown-toggle">Accessories</a>
             </div>
             <a href="/routes/login.html" class="user">Login</a>
-            <a href="#"><img src="/images/search.svg" alt="search" /></a>
             <a href="/routes/cart.html">
               <img src="/images/bag-navbar-logo.svg" alt="cart" />
             </a>
