@@ -28,74 +28,102 @@
         </div>
       </div>
       <div class="nav">
-        <a href="/routes/product.html" onclick="sendData(this)">
+        <a href="/routes/product.html" type="Mac" onclick="sendData(this)">
           <img alt="Mac" src="/images/store/store-card-13-mac-nav-202310.png" />
           Mac
         </a>
-        <a href="/routes/product.html" onclick="sendData(this)">
+        <a href="/routes/product.html" type="iPhone" onclick="sendData(this)">
           <img
             alt="iPhone"
             src="/images/store/store-card-13-iphone-nav-202409_GEO_US.png"
           />
           iPhone
         </a>
-        <a href="/routes/product.html" onclick="sendData(this)">
+        <a href="/routes/product.html" type="iPad" onclick="sendData(this)">
           <img
             alt="iPad"
             src="/images/store/store-card-13-ipad-nav-202405.png"
           />
           iPad
         </a>
-        <a href="/routes/product.html" onclick="sendData(this)">
+        <a href="/routes/product.html" type="Watch" onclick="sendData(this)">
           <img
             alt="Apple Watch"
             src="/images/store/store-card-13-watch-nav-202409.png"
           />
           Watch
         </a>
-        <a href="/routes/product.html" onclick="sendData(this)">
+        <a
+          href="/routes/product.html"
+          type="Accessories"
+          onclick="sendData(this)"
+        >
           <img
             alt="Apple Vision Pro"
             src="/images/store/store-card-13-vision-pro-nav-202401.png"
           />
           Apple Vision Pro
         </a>
-        <a href="/routes/product.html" onclick="sendData(this)">
+        <a
+          href="/routes/product.html"
+          type="Accessories"
+          onclick="sendData(this)"
+        >
           <img
             alt="AirPods"
             src="/images/store/store-card-13-airpods-nav-202409.png"
           />
           AirPods
         </a>
-        <a href="/routes/product.html" onclick="sendData(this)">
+        <a
+          href="/routes/product.html"
+          type="Accessories"
+          onclick="sendData(this)"
+        >
           <img
             alt="AirTag"
             src="/images/store/store-card-13-airtags-nav-202108.png"
           />
           AirTag
         </a>
-        <a href="/routes/product.html" onclick="sendData(this)">
+        <a
+          href="/routes/product.html"
+          type="Accessories"
+          onclick="sendData(this)"
+        >
           <img
             alt="Apple TV 4K"
             src="/images/store/store-card-13-appletv-nav-202210.png"
           />
           Apple TV 4K
         </a>
-        <a href="/routes/product.html" onclick="sendData(this)">
+        <a
+          href="/routes/product.html"
+          type="Accessories"
+          onclick="sendData(this)"
+        >
           <img
             alt="HomePod"
             src="/images/store/store-card-13-homepod-nav-202301.png"
           />
           HomePod
         </a>
-        <a href="/routes/product.html" onclick="sendData(this)">
+        <a
+          href="/routes/product.html"
+          type="Accessories"
+          onclick="sendData(this)"
+        >
           <img
             alt="Accessories"
             src="/images/store/store-card-13-accessories-nav-202409.png"
           />
           Accessories
         </a>
-        <a href="/routes/product.html" onclick="sendData(this)">
+        <a
+          href="/routes/product.html"
+          type="Accessories"
+          onclick="sendData(this)"
+        >
           <img
             alt="Apple Gift Card"
             src="/images/store/store-card-13-holiday-giftcards-asit-agc-nav-202111.png"
@@ -103,10 +131,33 @@
           Apple Gift Card
         </a>
       </div>
+      <div class="filter">
+        <div class="left-filter">
+          <select name="" id="price">
+            <option value="">Select price</option>
+            <option value="asc">Price Low to High</option>
+            <option value="desc">Price High to Low</option>
+          </select>
+        </div>
+        <div class="right-filter">
+          <input
+            id="search-area"
+            type="text"
+            placeholder="Search for any product"
+          />
+        </div>
+      </div>
       <div class="latest">
         The latest. <span> Take a look at what's new, right now.</span>
       </div>
       <div id="products" class=""></div>
+
+      <!-- pages button -->
+      <div class="pageButtons">
+        <button class="last">Previous</button>
+        <button class="next">Next</button>
+      </div>
+
       <div class="latest">
         Help is here. <span> Whenever and however you need it.</span>
       </div>

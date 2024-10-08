@@ -62,8 +62,9 @@ function isUserLoggedin() {
 }
 
 window.sendData = (element) => {
-  const text = element.textContent || element;
+  const text = element.type;
   localStorage.setItem("productType", text);
+  console.log(element);
 };
 
 function serverConfig() {

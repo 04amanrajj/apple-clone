@@ -10,10 +10,13 @@ footer();
 slide();
 isUserLoggedin();
 
-let baseUrl = serverConfig() + "/products";
-data(baseUrl);
+let currentPage = 1;
+let baseUrl = `${serverConfig()}/products?_limit=16&_page=${currentPage}`;
+console.log(baseUrl);
+getAPIdata(baseUrl);
+
 // Fetch data from the API
-async function data(baseUrl) {
+async function getAPIdata(baseUrl) {
   try {
     let data = await fetch(baseUrl);
     data = await data.json();
@@ -33,7 +36,6 @@ function display(data) {
   product.innerHTML = ""; // clear
   // console.log(data.reverse());
   data.forEach((element) => {
-    console.log(element);
     product.innerHTML += `
   <a href="/routes/product.html" class="product">
   <img src="${element.image}" alt="${element.title}" />
@@ -43,15 +45,60 @@ function display(data) {
   <p class="price">From $${element.price} or $${Math.floor(
       element.price / 24
     )}/mo. for 24 mo.*</p>
+    <p class="type">${element.type}</p>
   </div>
   </a>
   `;
+  // console.log(element.type);
     let item = document.querySelectorAll(".product");
     item.forEach((ele) => {
-      ele.addEventListener("click", ()=>{
-        sendData(element.type)
-        console.log(element.type); 
+      ele.addEventListener("click", (e) => {
+        // e.preventDefault()
+        localStorage.setItem("productType",ele.querySelector(".type").textContent)
       });
     });
   });
 }
+
+
+let priceSortButton = document.getElementById("price");
+let searchInput = document.getElementById("search-area");
+let option = "asc"
+
+// Function to update and fetch data
+const updateBaseUrlAndFetchData = () => {
+  const baseUrl = `${serverConfig()}/products?_limit=16&&title_like=${searchInput.value.trim()}&_sort=price&_order=${option}&_page=${currentPage}`;
+  console.log(baseUrl);
+  getAPIdata(baseUrl);
+};
+
+// Sort by price
+priceSortButton.addEventListener("change", () => {
+  option = priceSortButton.value||"asc" 
+  currentPage = 1;
+  updateBaseUrlAndFetchData();
+});
+
+// search
+searchInput.addEventListener("input", () => {
+  currentPage = 1;
+  updateBaseUrlAndFetchData();
+});
+
+// next page button
+let nextPageButton = document.querySelector(".next");
+nextPageButton.addEventListener("click", () => {
+  currentPage++; // Move to the next page
+  if(currentPage>4) currentPage=1
+  updateBaseUrlAndFetchData();
+  console.log(currentPage);
+});
+
+// previous page button
+let previousPageButton = document.querySelector(".last");
+previousPageButton.addEventListener("click", () => {
+  currentPage--;
+  if (currentPage < 1) currentPage = 1; // prevent going below page 1
+  updateBaseUrlAndFetchData();
+  console.log(currentPage);
+});
