@@ -1,4 +1,4 @@
-html{
+html {
   margin: 0;
   width: 100%;
 }
@@ -144,26 +144,28 @@ header + img {
 }
 
 .buy button {
-  border-radius: 10px;
   color: #333;
+  background-color: #fff;
   padding: 5px 10px;
   font-size: 40px;
-  border: 1px solid #777;
+  border: 1px solid #999;
+  border-radius: 18px;
   cursor: pointer;
   width: 60%;
   margin: auto;
   font-weight: bold;
+  transition: all 0.3s ease-in; 
+}
+
+.buy button:hover{
+  box-shadow: 2px 4px 12px #00000014;
+  transform: scale(1.02);
+  color: #333;
 }
 
 .buy {
   display: flex;
   margin-top: 20px;
-  transition: all 0.3s ease-in;
-}
-
-.buy:hover {
-  transform: scale(1.02);
-  color: #333;
 }
 
 .color {
@@ -204,7 +206,7 @@ header + img {
 .storage label {
   width: 30%;
   text-align: center;
-  height: 50px;
+  /* height: 50px; */
   transition: all 0.2s ease-in-out;
 }
 .storage label:hover {
@@ -222,11 +224,11 @@ header + img {
     object-fit: cover;
     width: 100%;
   }
-  
-.container div{
-  width: 100%;
-  box-sizing: border-box;
-}
+
+  .container div {
+    width: 100%;
+    box-sizing: border-box;
+  }
   h1 {
     font-size: 1.5rem;
   }
