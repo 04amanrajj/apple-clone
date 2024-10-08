@@ -27,6 +27,7 @@ form {
   display: flex;
   flex-direction: column;
   width: 50%;
+  height: max-content;
 
   justify-content: center;
   margin: auto;
@@ -44,20 +45,19 @@ input[type="submit"],
 form button {
   padding: 10px 20px;
   background-color: #007bff;
-  border: 2px solid #007bff;
+  border: 1px solid #007bff;
   color: #fff;
   width: 100%;
   margin: 5px;
   border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 input[type="submit"]:hover,
 form button:hover {
   color: #007bff;
   font-weight: bold;
   background-color: #fff;
-  border: 1px solid #007bff;
-  transition: background-color 0.3s ease-in;
 }
 .extra {
   margin-top: 100px;
@@ -70,6 +70,25 @@ input[type="checkbox"] {
 a {
   color: #007bff;
   text-decoration: none;
+}
+
+.admin-signin {
+  position: fixed;
+  width: auto;
+  bottom: 10px;
+  right: 20px;
+  background-color: #d91e18;
+  color: #fff;
+  border: 2px solid #d91e18;
+  border-radius: 10px;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease-in-out;
+}
+.admin-signin:hover{
+  background-color: #fff;
+  color: #d91e18;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {

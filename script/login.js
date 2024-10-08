@@ -1,72 +1,55 @@
-import { tostTopEnd, slide, isUserLoggedin } from "/utils/utils.js";
+import {
+  tostTopEnd,
+  slide,
+  isUserLoggedin,
+  serverConfig,
+} from "/utils/utils.js";
 import { header } from "/resources/preHtml.js";
 header();
 isUserLoggedin();
 slide();
 
-let baseUrl = "https://mock-server-b514.onrender.com/users";
+let baseUrl = serverConfig();
 let username = document.getElementById("username");
 let password = document.getElementById("password");
-let form = document.querySelector("form");
+let loginFormData = document.querySelector("form");
 
-form.addEventListener("submit", function (e) {
+loginFormData.addEventListener("submit", function (e) {
   e.preventDefault();
-  let user = { username: username.value, password: password.value };
-  checkUser(baseUrl, user);
+  let userLoginInfo = { username: username.value, password: password.value };
+  login(userLoginInfo);
 });
 
-async function checkUser(url, user) {
+async function login(userLoginInfo) {
   try {
-    let data = await fetch(url);
+    let data = await fetch(
+      `${baseUrl}/users?username=${userLoginInfo.username}&password=${userLoginInfo.password}` //getting user from api
+    );
     data = await data.json();
-
-    let userFound = false;
-
-    data.forEach((element) => {
-      if (
-        element.username === user.username &&
-        element.password === user.password
-      ) {
-        userFound = true;
-        tostTopEnd.fire({
-          icon: "info",
-          title: "Login successful!",
-        });
-        // for username in navbar
-        localStorage.setItem("loggedInUser", user.username);
-        console.log(user);
-        window.location.href = "/index.html";
-      }
-    });
-
-    if (!userFound) {
-      setTimeout(() => {
-        promptNewUser();
-      }, 1000);
+    console.log(data);
+    if (data.length != 0) {
+      tostTopEnd.fire({
+        icon: "success",
+        title: "Login successful!",
+      });
+      localStorage.setItem("loggedInUser", userLoginInfo.username); // for username in navbar
+      // console.log(userLoginInfo);
+      window.location.href = "/index.html"; //redirect when user found
+    } else {
+      tostTopEnd.fire({
+        icon: "error",
+        title: "User not found",
+      });
     }
   } catch (error) {
     tostTopEnd.fire({
       icon: "error",
-      title: `${error}`,
+      title: `Server error: ${error.message}`, //error if server problem
     });
   }
 }
 
-function promptNewUser() {
-  swal
-    .fire({
-      title: "New User? Let's create your account",
-      showCancelButton: true,
-      confirmButtonText: "Create Account",
-    })
-    .then((result) => {
-      if (result.isConfirmed) {
-        createNewUser();
-      }
-    });
-}
-
-window.createNewUser = () => {
+window.signup = () => {
   Swal.fire({
     title: "Create a new account",
     html: `
@@ -76,60 +59,75 @@ window.createNewUser = () => {
     confirmButtonText: "Create Account",
     showCancelButton: true,
     preConfirm: () => {
-      let newUsername = document.getElementById("swal-username").value;
-      let newPassword = document.getElementById("swal-password").value;
+      let username = document.getElementById("swal-username").value;
+      let password = document.getElementById("swal-password").value;
 
-      if (!newUsername || !newPassword) {
+      if (!username || !password) {
         Swal.showValidationMessage("fill all fields.");
         return false;
       }
 
-      return { username: newUsername, password: newPassword };
+      return { username, password };
     },
-  }).then((response) => {
+  }).then(async (response) => {
     if (response.isConfirmed) {
-      postData(baseUrl, response.value);
+      let newUserInfo = response.value;
+
+      try {
+        let data = await fetch(`${baseUrl}/users`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUserInfo),
+        });
+        data = await data.json();
+        console.log(data);
+        tostTopEnd.fire({
+          icon: "info",
+          title: "User created successfully",
+        });
+      } catch (error) {
+        tostTopEnd.fire({
+          icon: "error",
+          title: `Server error: ${error.message}`,
+        });
+      }
     }
   });
 };
 
-// POST data to the API
-async function postData(url, user) {
+//admin access
+let adminLoginButton = document.querySelector(".admin-signin");
+
+adminLoginButton.addEventListener("click", async (e) => {
+  let adminLoginInfo = { username: username.value, password: password.value };
+  if (!adminLoginInfo.username && !adminLoginInfo.password) {
+    return tostTopEnd.fire({
+      icon: "warning",
+      title: "Fill your details first ",
+    });
+  }
+
   try {
-    let data = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
-
-    data = await data.json();
-
-    tostTopEnd.fire({
-      icon: "info",
-      title: "User created successfully",
-    });
-    console.log("User created successfully", data);
+    let adminData = await fetch(
+      `${baseUrl}/admin?username=${adminLoginInfo.username}&password=${adminLoginInfo.password}`
+    );
+    adminData = await adminData.json();
+    if (adminData.length == 0) {
+      return tostTopEnd.fire({
+        icon: "error",
+        title: "You are not an admin",
+      });
+    }
+    console.log(adminData);
   } catch (error) {
     tostTopEnd.fire({
       icon: "error",
-      title: `Server is RIP ${error}`,
+      title: `Server error: ${error.message}`,
     });
   }
-}
 
-// add-on admin access
-let adminBtn = document.querySelector(".admin-signin");
-adminBtn.disabled = true;
-
-username.addEventListener("input", checkInputs);
-password.addEventListener("input", checkInputs);
-
-function checkInputs() {
-  if (username.value && password.value) adminBtn.disabled = false;
-}
-adminBtn.addEventListener("click", (e) => {
   e.preventDefault();
   Swal.fire({
     title: "Enter the security code",
@@ -152,7 +150,7 @@ adminBtn.addEventListener("click", (e) => {
     if (response.value.toLowerCase().trim() == "admin") {
       localStorage.setItem("loggedInUser", username.value);
       window.location.href = "/routes/dashboard.html";
-    }else{
+    } else {
       tostTopEnd.fire({
         icon: "error",
         title: "Code mismatched",
