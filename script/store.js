@@ -3,6 +3,8 @@ import {
   slide,
   isUserLoggedin,
   serverConfig,
+  loading,
+  stopLoading,
 } from "/utils/utils.js";
 import { header, footer } from "/resources/preHtml.js";
 header();
@@ -11,16 +13,18 @@ slide();
 isUserLoggedin();
 
 let currentPage = 1;
-let baseUrl = `${serverConfig()}/products?_limit=16&_page=${currentPage}`;
+let baseUrl = `${serverConfig()}/products?_limit=12&_page=${currentPage}`;
 console.log(baseUrl);
-getAPIdata(baseUrl);
+fetchData(baseUrl);
 
 // Fetch data from the API
-async function getAPIdata(baseUrl) {
+async function fetchData(baseUrl) {
+  loading()
   try {
     let data = await fetch(baseUrl);
     data = await data.json();
     display(data);
+    stopLoading()
   } catch (error) {
     tostTopEnd.fire({
       icon: "error",
@@ -49,38 +53,41 @@ function display(data) {
   </div>
   </a>
   `;
-  // console.log(element.type);
+    // console.log(element.type);
     let item = document.querySelectorAll(".product");
     item.forEach((ele) => {
       ele.addEventListener("click", (e) => {
         // e.preventDefault()
-        localStorage.setItem("productType",ele.querySelector(".type").textContent)
+        localStorage.setItem(
+          "productType",
+          ele.querySelector(".type").textContent
+        );
       });
     });
   });
 }
 
-
 let priceSortButton = document.getElementById("price");
 let searchInput = document.getElementById("search-area");
-let option = "asc"
+let option = "asc";
 
 // Function to update and fetch data
 const updateBaseUrlAndFetchData = () => {
-  const baseUrl = `${serverConfig()}/products?_limit=16&&title_like=${searchInput.value.trim()}&_sort=price&_order=${option}&_page=${currentPage}`;
+  const baseUrl = `${serverConfig()}/products?_limit=12&&title_like=${searchInput.value.trim()}&_sort=price&_order=${option}&_page=${currentPage}`;
   console.log(baseUrl);
-  getAPIdata(baseUrl);
+  fetchData(baseUrl);
 };
 
 // Sort by price
 priceSortButton.addEventListener("change", () => {
-  option = priceSortButton.value||"asc" 
+  option = priceSortButton.value || "asc";
   currentPage = 1;
   updateBaseUrlAndFetchData();
 });
 
 // search
-searchInput.addEventListener("input", () => {
+let searchButton=document.querySelector(".search-button")
+searchButton.addEventListener("click", () => {
   currentPage = 1;
   updateBaseUrlAndFetchData();
 });
@@ -89,7 +96,7 @@ searchInput.addEventListener("input", () => {
 let nextPageButton = document.querySelector(".next");
 nextPageButton.addEventListener("click", () => {
   currentPage++; // Move to the next page
-  if(currentPage>4) currentPage=1
+  if (currentPage > 4) currentPage = 1;
   updateBaseUrlAndFetchData();
   console.log(currentPage);
 });

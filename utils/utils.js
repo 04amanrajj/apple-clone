@@ -71,8 +71,31 @@ function serverConfig() {
   let serverUrl = "https://mock-server-b514.onrender.com";
   let devUrl = "http://localhost:4000";
 
-  let baseUrl = devUrl;
+  let baseUrl = serverUrl;
   return baseUrl;
 }
 
-export { tostTopEnd, tostBottomEnd, isUserLoggedin, serverConfig, slide };
+// loading screen
+function loading() {
+  const loadingHTML = document.querySelector(".loading-screen");
+  loadingHTML.innerHTML = `
+  <div style="z-index:1000; width: 100%;position: fixed;top: 0%;height: 100vh;backdrop-filter: blur(5px)" class="loading-popup">
+    <h1 style="display: flex; height: 90vh; justify-content: center; align-items: center;">Loading...</h1>
+  </div>
+`;
+}
+
+function stopLoading() {
+  let loadingScreen = document.querySelector(".loading-screen");
+  loadingScreen.innerHTML=null
+}
+
+export {
+  tostTopEnd,
+  tostBottomEnd,
+  isUserLoggedin,
+  serverConfig,
+  slide,
+  loading,
+  stopLoading
+};

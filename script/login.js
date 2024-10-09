@@ -3,6 +3,8 @@ import {
   slide,
   isUserLoggedin,
   serverConfig,
+  loading,
+  stopLoading,
 } from "/utils/utils.js";
 import { header } from "/resources/preHtml.js";
 header();
@@ -21,11 +23,13 @@ loginFormData.addEventListener("submit", function (e) {
 });
 
 async function login(userLoginInfo) {
+  loading()
   try {
     let data = await fetch(
       `${baseUrl}/users?username=${userLoginInfo.username}&password=${userLoginInfo.password}` //getting user from api
     );
     data = await data.json();
+    stopLoading()
     console.log(data);
     if (data.length != 0) {
       tostTopEnd.fire({
@@ -42,6 +46,7 @@ async function login(userLoginInfo) {
       });
     }
   } catch (error) {
+    stopLoading()
     tostTopEnd.fire({
       icon: "error",
       title: `Server error: ${error.message}`, //error if server problem
@@ -72,7 +77,7 @@ window.signup = () => {
   }).then(async (response) => {
     if (response.isConfirmed) {
       let newUserInfo = response.value;
-
+loading()
       try {
         let data = await fetch(`${baseUrl}/users`, {
           method: "POST",
@@ -83,11 +88,13 @@ window.signup = () => {
         });
         data = await data.json();
         console.log(data);
+        stopLoading()
         tostTopEnd.fire({
           icon: "info",
           title: "User created successfully",
         });
       } catch (error) {
+        stopLoading()
         tostTopEnd.fire({
           icon: "error",
           title: `Server error: ${error.message}`,
@@ -108,12 +115,13 @@ adminLoginButton.addEventListener("click", async (e) => {
       title: "Fill your details first ",
     });
   }
-
+  loading()
   try {
     let adminData = await fetch(
       `${baseUrl}/admin?username=${adminLoginInfo.username}&password=${adminLoginInfo.password}`
     );
     adminData = await adminData.json();
+    stopLoading()
     if (adminData.length == 0) {
       return tostTopEnd.fire({
         icon: "error",
@@ -126,6 +134,7 @@ adminLoginButton.addEventListener("click", async (e) => {
       icon: "error",
       title: `Server error: ${error.message}`,
     });
+    stopLoading()
   }
 
   e.preventDefault();
@@ -147,13 +156,14 @@ adminLoginButton.addEventListener("click", async (e) => {
       return security;
     },
   }).then((response) => {
+    loading()
     if (response.value.toLowerCase().trim() == "admin") {
-      localStorage.setItem("loggedInUser", username.value);
       window.location.href = "/routes/dashboard.html";
     } else {
+      stopLoading()
       tostTopEnd.fire({
         icon: "error",
-        title: "Code mismatched",
+        title: "Code not valid",
       });
     }
   });

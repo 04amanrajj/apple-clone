@@ -1,4 +1,4 @@
-import { slide,isUserLoggedin } from "/utils/utils.js";
+import { slide,isUserLoggedin,loading,stopLoading,serverConfig } from "/utils/utils.js";
 import { header, footer } from "/resources/preHtml.js";
 isUserLoggedin()
 header();
@@ -9,17 +9,18 @@ let id = JSON.parse(localStorage.getItem("cart")) || [];
 let total = document.querySelector(".total");
 let total2 = document.querySelector(".totall");
 let checkout = document.querySelectorAll(".checkout");
-let baseUrl = "https://mock-server-b514.onrender.com/products/";
+let baseUrl = serverConfig();
 let products = [];
-let price = 0;
 
 // fetch data from url
 for (let i of id) {
-  let data = await fetch(baseUrl + i);
+  loading()
+  let data = await fetch(`${baseUrl}/products/${i}`);
   data = await data.json();
   if (data.length != 0) {
     products.push(data);
   }
+  stopLoading()
 }
 
 // kick if data is empty

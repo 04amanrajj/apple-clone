@@ -3,6 +3,8 @@ import {
   slide,
   isUserLoggedin,
   serverConfig,
+  loading,
+  stopLoading,
 } from "/utils/utils.js";
 import { header, footer } from "/resources/preHtml.js";
 header();
@@ -19,41 +21,41 @@ let productName = document.getElementsByClassName("name");
 let description = document.querySelector(".description");
 let topPrice = document.querySelector(".price");
 let buyBtn = document.querySelector(".buy button");
-let localData;
+let productInfo;
 
 // Fetching data using id and baseurl
+loading()
 try {
   const response = await fetch(baseUrl);
   const result = await response.json();
   console.log(result);
-  localData = result;
-
-  tostTopEnd.fire({
-    icon: "success",
-    title: "DOM Updated",
-  });
+  productInfo = result;
+  stopLoading()
 } catch (error) {
   tostTopEnd.fire({
     icon: "error",
-    title: error,
+    title: `Server error: ${error.message}`,
   });
+  stopLoading()
 }
 
 // Update data on DOM
-productImg.src = localData.image;
+productImg.src = productInfo.image;
 for (let i of productName) {
-  i.textContent = localData.title;
+  i.textContent = productInfo.title;
 }
-description.textContent = localData.description;
-topPrice.innerHTML = `From $${localData.price} or $${Math.floor(
-  localData.price / 24
+description.textContent = productInfo.description;
+topPrice.innerHTML = `From $${productInfo.price} or $${Math.floor(
+  productInfo.price / 24
 )}/mo. per month for 24mo.months`;
 
 // Add event listener to the buy button
 buyBtn.addEventListener("click", () => {
+  loading()
   if (!cart.find((item) => item === id)) {
     cart.push(id);
     localStorage.setItem("cart", JSON.stringify(cart));
+    stopLoading()
     tostTopEnd.fire({
       icon: "success",
       title: "Added to cart",
@@ -63,5 +65,6 @@ buyBtn.addEventListener("click", () => {
       icon: "info",
       title: "Already in cart",
     });
+    stopLoading()
   }
 });
