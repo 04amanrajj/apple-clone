@@ -215,8 +215,11 @@ header + img {
 }
 
 .storage label:active {
-  transform: scale(0.8);
+  transform: scale(0.9);
   color: #222;
+}
+.lower-part{
+  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -271,8 +274,8 @@ header + img {
     font-size: 1.2rem;
     position: fixed;
     width: 80%;
-    left: 50%;
-    transform: translateX(-50%);
+    left:10%;
+    transform: translateX(0%);
     z-index: 1000;
     background-color: #007bff;
     color: white;
@@ -282,6 +285,19 @@ header + img {
     cursor: pointer;
   }
 
+  .buy button:hover{
+    box-shadow: 2px 4px 12px #00000014;
+    transform: scale(1);
+    color: #333;
+  }
+
+.buy button:active{
+  box-shadow: 2px 4px 12px #00000014;
+  transform: scale(0.9);
+  color: #333;
+}
+
+  
   .ask {
     flex-direction: column;
     align-items: flex-start;
@@ -313,11 +329,11 @@ header + img {
 
   .storage {
     margin: 10px 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    flex-direction: column;
+    flex-direction: row;
     gap: 20px 0px;
     place-items: center;
+    flex-wrap: wrap;
+
   }
   .storage div {
     width: min-content;

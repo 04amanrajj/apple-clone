@@ -11,25 +11,28 @@ header();
 isUserLoggedin();
 slide();
 
+// ------------->HTML
 let baseUrl = serverConfig();
 let username = document.getElementById("username");
 let password = document.getElementById("password");
 let loginFormData = document.querySelector("form");
 
+// -------------getting login data
 loginFormData.addEventListener("submit", function (e) {
   e.preventDefault();
   let userLoginInfo = { username: username.value, password: password.value };
   login(userLoginInfo);
 });
 
+// ------------finding data from server
 async function login(userLoginInfo) {
-  loading()
+  loading();
   try {
     let data = await fetch(
       `${baseUrl}/users?username=${userLoginInfo.username}&password=${userLoginInfo.password}` //getting user from api
     );
     data = await data.json();
-    stopLoading()
+    stopLoading();
     console.log(data);
     if (data.length != 0) {
       tostTopEnd.fire({
@@ -37,7 +40,6 @@ async function login(userLoginInfo) {
         title: "Login successful!",
       });
       localStorage.setItem("loggedInUser", userLoginInfo.username); // for username in navbar
-      // console.log(userLoginInfo);
       window.location.href = "/index.html"; //redirect when user found
     } else {
       tostTopEnd.fire({
@@ -46,7 +48,7 @@ async function login(userLoginInfo) {
       });
     }
   } catch (error) {
-    stopLoading()
+    stopLoading();
     tostTopEnd.fire({
       icon: "error",
       title: `Server error: ${error.message}`, //error if server problem
@@ -54,6 +56,7 @@ async function login(userLoginInfo) {
   }
 }
 
+// ------------creating new user 
 window.signup = () => {
   Swal.fire({
     title: "Create a new account",
@@ -77,7 +80,7 @@ window.signup = () => {
   }).then(async (response) => {
     if (response.isConfirmed) {
       let newUserInfo = response.value;
-loading()
+      loading();
       try {
         let data = await fetch(`${baseUrl}/users`, {
           method: "POST",
@@ -88,13 +91,13 @@ loading()
         });
         data = await data.json();
         console.log(data);
-        stopLoading()
+        stopLoading();
         tostTopEnd.fire({
           icon: "info",
           title: "User created successfully",
         });
       } catch (error) {
-        stopLoading()
+        stopLoading();
         tostTopEnd.fire({
           icon: "error",
           title: `Server error: ${error.message}`,
@@ -104,7 +107,7 @@ loading()
   });
 };
 
-//admin access
+// ------------admin login
 let adminLoginButton = document.querySelector(".admin-signin");
 
 adminLoginButton.addEventListener("click", async (e) => {
@@ -115,13 +118,13 @@ adminLoginButton.addEventListener("click", async (e) => {
       title: "Fill your details first ",
     });
   }
-  loading()
+  loading();
   try {
     let adminData = await fetch(
       `${baseUrl}/admin?username=${adminLoginInfo.username}&password=${adminLoginInfo.password}`
     );
     adminData = await adminData.json();
-    stopLoading()
+    stopLoading();
     if (adminData.length == 0) {
       return tostTopEnd.fire({
         icon: "error",
@@ -134,7 +137,7 @@ adminLoginButton.addEventListener("click", async (e) => {
       icon: "error",
       title: `Server error: ${error.message}`,
     });
-    stopLoading()
+    stopLoading();
   }
 
   e.preventDefault();
@@ -156,11 +159,9 @@ adminLoginButton.addEventListener("click", async (e) => {
       return security;
     },
   }).then((response) => {
-    loading()
     if (response.value.toLowerCase().trim() == "admin") {
       window.location.href = "/routes/dashboard.html";
     } else {
-      stopLoading()
       tostTopEnd.fire({
         icon: "error",
         title: "Code not valid",
@@ -168,3 +169,4 @@ adminLoginButton.addEventListener("click", async (e) => {
     }
   });
 });
+stopLoading();

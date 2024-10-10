@@ -252,9 +252,14 @@ img {
   }
 
   .filter {
-    width: 100%;
     padding-right: 0;
     margin: auto;
+  }
+  .left-filter{
+    width: 80%;
+  }
+  #price{
+    width: inherit;
   }
   .filter input,
   .filter select,
@@ -264,10 +269,15 @@ img {
   }
 
   .right-filter {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
   }
+.right-filter input{
+  width: inherit;
+}
+
 
   #products {
     display: grid;

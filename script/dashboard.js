@@ -21,7 +21,7 @@ async function renderData() {
     let response = await fetch(baseUrl);
     response = await response.json();
     stopLoading();
-    displayProducts(response);
+    displayProducts(response); 
     tostTopEnd.fire({
       icon: "success",
       title: "Store Refreshed!",
