@@ -94,11 +94,14 @@ function displayProducts(data) {
         title: "Edit Product",
         html: `
             <select id="swal-type" required>
-                <option value="mobile" ${
-                  data[index].type === "mobile" ? "selected" : ""
-                }>Mobile</option>
-                <option value="pc" ${
-                  data[index].type === "pc" ? "selected" : ""
+                <option value="iphone" ${
+                  data[index].type === "iphone" ? "selected" : ""
+                }>iphone</option>
+                <option value="ipad" ${
+                  data[index].type === "ipad" ? "selected" : ""
+                }>ipad</option>
+                <option value="mac" ${
+                  data[index].type === "mac" ? "selected" : ""
                 }>Mac</option>
                 <option value="watch" ${
                   data[index].type === "watch" ? "selected" : ""

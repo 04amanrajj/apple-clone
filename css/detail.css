@@ -154,10 +154,10 @@ header + img {
   width: 60%;
   margin: auto;
   font-weight: bold;
-  transition: all 0.3s ease-in; 
+  transition: all 0.3s ease-in;
 }
 
-.buy button:hover{
+.buy button:hover {
   box-shadow: 2px 4px 12px #00000014;
   transform: scale(1.02);
   color: #333;
@@ -218,7 +218,7 @@ header + img {
   transform: scale(0.9);
   color: #222;
 }
-.lower-part{
+.lower-part {
   width: 100%;
 }
 
@@ -274,7 +274,7 @@ header + img {
     font-size: 1.2rem;
     position: fixed;
     width: 80%;
-    left:10%;
+    left: 10%;
     transform: translateX(0%);
     z-index: 1000;
     background-color: #007bff;
@@ -285,19 +285,18 @@ header + img {
     cursor: pointer;
   }
 
-  .buy button:hover{
+  .buy button:hover {
     box-shadow: 2px 4px 12px #00000014;
     transform: scale(1);
     color: #333;
   }
 
-.buy button:active{
-  box-shadow: 2px 4px 12px #00000014;
-  transform: scale(0.9);
-  color: #333;
-}
+  .buy button:active {
+    box-shadow: 2px 4px 12px #00000014;
+    transform: scale(0.9);
+    color: #333;
+  }
 
-  
   .ask {
     flex-direction: column;
     align-items: flex-start;
@@ -329,11 +328,8 @@ header + img {
 
   .storage {
     margin: 10px 0;
-    flex-direction: row;
-    gap: 20px 0px;
+    flex-direction: column;
     place-items: center;
-    flex-wrap: wrap;
-
   }
   .storage div {
     width: min-content;
