@@ -42,7 +42,7 @@ function display(data) {
   data.forEach((element) => {
     product.innerHTML += `
   <a href="/routes/product.html" class="product">
-  <img src="${element.image}" alt="${element.title}" />
+  <img loading="lazy" src="${element.image}" alt="${element.title}" />
   <div class="product-content">
   <h2>${element.title}</h2>
   <p>${element.description}</p>

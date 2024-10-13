@@ -50,7 +50,7 @@ function displayProducts(data) {
     products.innerHTML += `
         <div class="product">
         <h2>${element.title}</h2>
-        <img src="${element.image}" width="300px" height="400px" alt="" />
+        <img loading="lazy" src="${element.image}" width="300px" height="400px" alt="" />
         <p>${element.description}</p>
         <p>$${element.price}</p>
         <p>ID:${element.id}</p>

@@ -49,7 +49,7 @@ function updateCart() {
     let productDiv = document.createElement("div");
     productDiv.classList.add("product");
     productDiv.innerHTML = `
-        <img src="${element.image}" alt="${element.title}" />
+        <img loading="lazy" src="${element.image}" alt="${element.title}" />
         <div class="right">
           <div class="top">
             <h1 class="name">${element.title}</h1>

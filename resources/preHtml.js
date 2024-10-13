@@ -204,7 +204,7 @@ export function header() {
       <header>
         <div class="top-navbar">
           <a href="/index.html" class="logo">
-            <img src="/images/apple-navbar-logo.svg" alt="apple-logo" />
+            <img loading="lazy" src="/images/apple-navbar-logo.svg" alt="apple-logo" />
           </a>
           <div class="nav-links">
             <div class="dropdown">
@@ -239,7 +239,7 @@ export function header() {
             </div>
             <a href="/routes/login.html" class="user">Login</a>
             <a href="/routes/cart.html">
-              <img src="/images/bag-navbar-logo.svg" alt="cart" />
+              <img loading="lazy" src="/images/bag-navbar-logo.svg" alt="cart" />
             </a>
           </div>
         </div>

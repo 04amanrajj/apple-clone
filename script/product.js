@@ -55,7 +55,7 @@ function display(data) {
     document.querySelector(".products").innerHTML += `
     <div class="device">
         <div>
-            <img src="${element.image}" alt="${element.title}" />
+            <img loading="lazy" src="${element.image}" alt="${element.title}" />
         </div>
         <div>
             <h1>${element.title}</h1>
