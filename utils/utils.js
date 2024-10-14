@@ -86,25 +86,24 @@ function loading() {
 
 <style>
 .loading-popup {
-    z-index: 1000;
+    z-index: 100;
     width: 100%;
-    position: fixed;
     top: 0;
-    height: 100vh;
+    height: 100%;
     backdrop-filter: blur(8px);
-    background: rgba(0, 0, 0, 0.6);
     display: flex;
+    position:absolute;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
 .spinner {
-    border: 10px solid rgba(255, 255, 255, 0.3);
+    border: 10px solid rgba(0, 0, 0, 0.3);
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    border-top-color: white;
+    border-top-color: black;
     animation: spin 1s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
 }
 
@@ -113,14 +112,13 @@ h1 {
     "Helvetica Neue", Arial, sans-serif;
     margin-top: 20px;
     font-size: 1.5rem;
-    color: #fff;
+    color: #000;
 }
 
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
 </style>
-
 `;
   
 }
