@@ -1,28 +1,31 @@
-import { slide,isUserLoggedin } from "/utils/utils.js";
+import { slide,isUserLoggedin,loading,stopLoading,serverConfig } from "/utils/utils.js";
 import { header, footer } from "/resources/preHtml.js";
 isUserLoggedin()
 header();
 footer();
 slide();
 
+// ------------HTML
 let id = JSON.parse(localStorage.getItem("cart")) || [];
 let total = document.querySelector(".total");
 let total2 = document.querySelector(".totall");
 let checkout = document.querySelectorAll(".checkout");
-let baseUrl = "https://mock-server-b514.onrender.com/products/";
+let device = document.querySelector(".products");
+let baseUrl = serverConfig();
 let products = [];
-let price = 0;
 
-// fetch data from url
+// ------------fetch data from url
 for (let i of id) {
-  let data = await fetch(baseUrl + i);
+  loading()
+  let data = await fetch(`${baseUrl}/products/${i}`);
   data = await data.json();
   if (data.length != 0) {
     products.push(data);
   }
+  stopLoading()
 }
 
-// kick if data is empty
+// ------------redirect to home if cart data is empty
 if (products.length == 0) {
   Swal.fire({
     icon: "info",
@@ -39,15 +42,14 @@ if (products.length == 0) {
 }
 
 function updateCart() {
-  let middlePart = document.querySelector(".products");
-  middlePart.innerHTML = ""; // clear
+  device.innerHTML = ""; // clear
   let totalPrice = 0; // Initialize total 
 
   products.forEach((element, index) => {
     let productDiv = document.createElement("div");
     productDiv.classList.add("product");
     productDiv.innerHTML = `
-        <img src="${element.image}" alt="${element.title}" />
+        <img loading="lazy" src="${element.image}" alt="${element.title}" />
         <div class="right">
           <div class="top">
             <h1 class="name">${element.title}</h1>
@@ -67,20 +69,20 @@ function updateCart() {
         </div>
       `;
 
-    middlePart.appendChild(productDiv);
+    device.appendChild(productDiv);
 
-    let quantitySelect = productDiv.querySelector(".quantity");
+    let productQuantity = productDiv.querySelector(".quantity");
     let productPrice = Number(element.price);
-    let initialQuantity = quantitySelect.value;
+    let initialQuantity = productQuantity.value;
     totalPrice += productPrice * initialQuantity;
 
-    updateTotalDisplay(totalPrice);
+    updateTotalPrice(totalPrice);
 
-    quantitySelect.addEventListener("change", () => {
-      let quantity = parseInt(quantitySelect.value);
+    productQuantity.addEventListener("change", () => {
+      let quantity = parseInt(productQuantity.value);
       totalPrice -= productPrice * (initialQuantity - quantity);
       initialQuantity = quantity;
-      updateTotalDisplay(totalPrice);
+      updateTotalPrice(totalPrice);
     });
 
     let deleteButton = productDiv.querySelector(".delete");
@@ -92,16 +94,16 @@ function updateCart() {
     });
   });
 
-  updateTotalDisplay(totalPrice);
+  updateTotalPrice(totalPrice);
 }
 
-// update price
-function updateTotalDisplay(totalPrice) {
+// ------------update price
+function updateTotalPrice(totalPrice) {
   total.textContent = `$${totalPrice.toFixed(2)}`;
   total2.textContent = `$${totalPrice.toFixed(2)}`;
 }
 
-// check out button
+// ------------check out button
 for (let i of checkout) {
   i.addEventListener("click", () => {
     let timerInterval;
@@ -133,6 +135,4 @@ for (let i of checkout) {
     });
   });
 }
-
-console.log(products);
 updateCart();

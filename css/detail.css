@@ -1,8 +1,10 @@
-/* General Reset */
+html {
+  margin: 0;
+  width: 100%;
+}
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -35,7 +37,7 @@ h2 {
 }
 
 /* Top Banner */
-header+img {
+header + img {
   display: block;
   cursor: pointer;
   margin: auto;
@@ -97,7 +99,7 @@ header+img {
 
 .specs {
   margin-bottom: 100px;
-  overflow-y:scroll;
+  overflow-y: scroll;
   scrollbar-width: none;
   width: min-content;
 }
@@ -142,26 +144,28 @@ header+img {
 }
 
 .buy button {
-  border-radius: 10px;
   color: #333;
+  background-color: #fff;
   padding: 5px 10px;
   font-size: 40px;
-  border: 1px solid #777;
+  border: 1px solid #999;
+  border-radius: 18px;
   cursor: pointer;
   width: 60%;
   margin: auto;
   font-weight: bold;
+  transition: all 0.3s ease-in;
+}
+
+.buy button:hover {
+  box-shadow: 2px 4px 12px #00000014;
+  transform: scale(1.02);
+  color: #333;
 }
 
 .buy {
   display: flex;
   margin-top: 20px;
-  transition: all 0.3s ease-in;
-}
-
-.buy:hover {
-  transform: scale(1.02);
-  color: #333;
 }
 
 .color {
@@ -202,7 +206,7 @@ header+img {
 .storage label {
   width: 30%;
   text-align: center;
-  height: 50px;
+  /* height: 50px; */
   transition: all 0.2s ease-in-out;
 }
 .storage label:hover {
@@ -211,6 +215,123 @@ header+img {
 }
 
 .storage label:active {
-  transform: scale(0.8);
+  transform: scale(0.9);
   color: #222;
+}
+.lower-part {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .topbar-img {
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .container div {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  .device-info {
+    height: max-content;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .device-img {
+    height: auto;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .device-img img {
+    height: 300px;
+    object-fit: contain;
+    width: 100%;
+  }
+
+  .specs {
+    margin-top: 15%;
+    box-sizing: border-box;
+    width: 400px;
+    overflow-y: visible;
+    height: auto;
+    margin-bottom: 0;
+  }
+
+  .buy button {
+    font-size: 1.2rem;
+    position: fixed;
+    width: 80%;
+    left: 10%;
+    transform: translateX(0%);
+    z-index: 1000;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .buy button:hover {
+    box-shadow: 2px 4px 12px #00000014;
+    transform: scale(1);
+    color: #333;
+  }
+
+  .buy button:active {
+    box-shadow: 2px 4px 12px #00000014;
+    transform: scale(0.9);
+    color: #333;
+  }
+
+  .ask {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .option-1 h1,
+  .option-2 h1,
+  .option-3 h1,
+  .option-5 h1 {
+    font-size: 1.2rem;
+  }
+
+  .option-1 p,
+  .option-2 p,
+  .option-3 p,
+  .option-5 p {
+    font-size: 0.9rem;
+  }
+
+  .option-5 p {
+    margin-bottom: 10%;
+  }
+
+  .lower-part img {
+    object-fit: cover;
+    height: auto;
+    width: 100%;
+  }
+
+  .storage {
+    margin: 10px 0;
+    flex-direction: column;
+    place-items: center;
+  }
+  .storage div {
+    width: min-content;
+  }
 }

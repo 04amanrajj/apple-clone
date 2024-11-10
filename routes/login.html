@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -26,20 +27,21 @@
           required
         />
         <div>
-          <button class="admin-signin">Sign in As Admin</button>
           <input type="submit" id="submit" value="Sign In" />
         </div>
       </form>
+      <button class="admin-signin">Admin login</button>
       <div class="extra">
         <br />
         <p>
-          Don't have an Apple Account?<a href="#" onclick="createNewUser()">
+          Don't have an Apple Account?<a href="#" onclick="signup()">
             Create yours now. ↗</a
           >
         </p>
       </div>
     </div>
   </body>
+  <div class="loading-screen"></div>
 </html>
 <script type="module" src="/script/login.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

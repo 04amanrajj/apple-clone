@@ -1,3 +1,282 @@
+export function header() {
+  const headerHTML = `
+  <style>
+      .top-navbar {
+        background-color: #f7f7f7d5;
+        display: flex;
+        position: fixed;
+        z-index: 1000;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        margin: 0 auto;
+        box-sizing: border-box;
+        backdrop-filter: blur(10px);
+        top: 0;
+        left: 0;
+      }
+
+      .logo {
+        margin-right: 20px;
+      }
+
+      .top-navbar a {
+        color: #333;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 400;
+        margin-right: 40px;
+      }
+
+      .top-navbar a:hover {
+        color: #06c;
+      }
+
+      .top-navbar a:last-child {
+        margin-right: 0;
+      }
+
+      .top-navbar .fas.fa-search {
+        margin-right: 20px;
+      }
+
+      .top-navbar .fas.fa-shopping-bag {
+        margin-right: 0;
+      }
+
+      .store,
+      .mac {
+        font-weight: 600;
+      }
+
+      .logo + a {
+        margin-left: 20px;
+      }
+
+      .top-navbar > a,
+      .top-navbar > .logo {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      @media (max-width: 768px) {
+        .top-navbar {
+          padding: 15px 20px;
+        }
+        .top-navbar a {
+          font-size: 15px;
+        }
+        .top-navbar .fas {
+          font-size: 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .top-navbar {
+          padding: 10px 15px;
+        }
+        .top-navbar a {
+          font-size: 13px;
+        }
+        .top-navbar .fas {
+          font-size: 14px;
+        }
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-right: 10px;
+      }
+      .nav-links div {
+        color: #1d1d1f;
+        text-decoration: none;
+        margin-right: 25px;
+      }
+      header {
+        position: relative;
+      }
+
+      .dropdown-content {
+        padding: 0 40px;
+        justify-content: center;
+        background-color: #f7f7f7d5;
+        z-index: 1;
+        align-items: flex-start;
+        width: 100%;
+        box-sizing: border-box;
+        backdrop-filter: blur(10px);
+        text-align: left;
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        overflow: hidden;
+        position: fixed;
+        top: 46px;
+        left: 0;
+        right: 0;
+        transition: max-height 0.5s ease-in-out, opacity 3s ease-out, visibility 3s;
+        display: flex;
+        flex-direction: row;
+      }
+
+      .top-navbar:hover + .dropdown-content,
+      .dropdown-content:hover {
+        visibility: visible;
+        opacity: 1;
+        max-height: 400px;
+        transition: max-height 0.5s ease-in-out, opacity 0.3s ease-out;
+      }
+
+      .dropdown-content .column {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        margin: 10px 80px;
+      }
+      .dropdown-content .column h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+        margin: 0 0 10px 0;
+      }
+      .dropdown-content .column a {
+        font-size: 17px;
+        font-weight: 400;
+        color: #1d1d1f;
+        text-decoration: none;
+        margin: 5px 0;
+      }
+      .dropdown-content .column a:first-child {
+        font-weight: 600;
+      }
+
+      @media (max-width: 768px) {
+        .top-navbar {
+          padding: 0 10px 0 30px;
+          justify-content: space-between;
+        }
+        .top-navbar a {
+          font-size: 12px;
+          margin-right: 10px;
+        }
+        .top-navbar .fas {
+          font-size: 12px;
+          margin-right: 10px;
+        }
+        .logo {
+          margin-right: 10px;
+        }
+        .nav-links div {
+          margin-right: 10px;
+          font-size: 20px;
+        }
+        .dropdown-content {
+          padding: 0 10px;
+          flex-direction: column;
+        }
+        .dropdown-content .column {
+          margin: 5px 0;
+        }
+        .dropdown-content .column a {
+          font-size: 14px;
+        }
+        .nav-links > div:nth-child(n + 1):nth-child(-n + 10) {
+          display: none;
+        }
+        .nav-links > div + a {
+          font-size: 20px;
+          margin-right: 20px;
+          font-weight: bold;
+        }
+        .searchicon {
+          display: none;
+        }
+
+        .top-navbar:hover + .dropdown-content,
+        .dropdown-content:hover {
+          visibility: hidden;
+        }
+      }
+
+  </style>
+      <header>
+        <div class="top-navbar">
+          <a href="/index.html" class="logo">
+            <img loading="lazy" src="/images/apple-navbar-logo.svg" alt="apple-logo" />
+          </a>
+          <div class="nav-links">
+            <div class="dropdown">
+              <a href="/routes/store.html" class="store">Store</a>
+            </div>
+            <div class="dropdown">
+              <a href="/routes/product.html" type="Mac" onclick="sendData(this)" class="dropdown-toggle">Mac</a>
+            </div>
+            <div class="dropdown">
+              <a href="/routes/product.html" type="iPad" onclick="sendData(this)" class="dropdown-toggle">iPad</a>
+            </div>
+            <div class="dropdown">
+              <a href="/routes/product.html" type="iPhone" onclick="sendData(this)" class="dropdown-toggle">iPhone</a>
+            </div>
+            <div class="dropdown">
+              <a href="/routes/product.html" type="Watch" onclick="sendData(this)" class="dropdown-toggle">Watch</a>
+            </div>
+            <div class="dropdown">
+              <a href="/routes/product.html" type="Accessories" onclick="sendData(this)" class="dropdown-toggle">Vision</a>
+            </div>
+            <div class="dropdown">
+              <a href="/routes/product.html" type="Accessories" onclick="sendData(this)" class="dropdown-toggle">AirPods</a>
+            </div>
+            <div class="dropdown">
+              <a href="/routes/product.html" type="Accessories" onclick="sendData(this)" class="dropdown-toggle">TV & Home</a>
+            </div>
+            <div class="dropdown">
+              <a href="/routes/product.html" type="Accessories" onclick="sendData(this)" class="dropdown-toggle">Entertainment</a>
+            </div>
+            <div class="dropdown">
+              <a href="/routes/product.html" type="Accessories" onclick="sendData(this)" class="dropdown-toggle">Accessories</a>
+            </div>
+            <a href="/routes/login.html" class="user">Login</a>
+            <a href="/routes/cart.html">
+              <img loading="lazy" src="/images/bag-navbar-logo.svg" alt="cart" />
+            </a>
+          </div>
+        </div>
+        <div class="dropdown-content">
+          <div class="column">
+            <h3>Shop</h3>
+            <a href="/routes/store.html">Shop the Latest</a>
+            <a href="/routes/store.html">Mac</a>
+            <a href="/routes/store.html">iPad</a>
+            <a href="/routes/store.html">iPhone</a>
+            <a href="/routes/store.html">Apple Watch</a>
+            <a href="/routes/store.html">Apple Vision Pro</a>
+            <a href="/routes/store.html">Accessories</a>
+          </div>
+          <div class="column">
+            <h3>Quick Links</h3>
+            <a href="/routes/store.html">Find a Store</a>
+            <a href="/routes/store.html">Order Status</a>
+            <a href="/routes/store.html">Apple Trade In</a>
+            <a href="/routes/store.html">Financing</a>
+            <a href="/routes/store.html">College Student Offer</a>
+          </div>
+          <div class="column">
+            <h3>Shop Special Stores</h3>
+            <a href="/routes/store.html">Certified Refurbished</a>
+            <a href="/routes/store.html">Education</a>
+            <a href="/routes/store.html">Business</a>
+            <a href="/routes/store.html">Veterans and Military</a>
+            <a href="/routes/store.html">Government</a>
+          </div>
+        </div>
+      </header>
+    `;
+
+  document.body.insertAdjacentHTML("afterbegin", headerHTML);
+}
+
 export function footer() {
   const footer = document.createElement("footer");
 
@@ -69,6 +348,19 @@ footer {
 }
 .footer-bottom p {
   margin: 5px 0;
+}
+@media (max-width:768px){
+
+  .footer{
+    display:grid;
+    grid-template-columns:repeat(6,auto);
+  }
+
+}
+@media (max-width: 500px) {
+  .footer{
+    display:none;
+  }
 }
   </style>
       <div class="footer">
@@ -197,242 +489,4 @@ footer {
   const body = document.body;
 
   body.appendChild(footer);
-}
-
-export function header() {
-  const headerHTML = `
-  <style>
-      .top-navbar {
-  background-color: #f7f7f7d5;
-  display: flex;
-  position: fixed;
-  z-index: 1000;
-  align-items: center;
-  width: 100%;
-  justify-content: center;
-  margin: 0 auto;
-  box-sizing: border-box;
-  backdrop-filter: blur(10px);
-}
-
-.logo {
-  margin-right: 20px;
-}
-
-.top-navbar a {
-  color: #333;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 400;
-  margin-right: 40px;
-}
-
-.top-navbar a:hover {
-  color: #06c;
-}
-
-.top-navbar a:last-child {
-  margin-right: 0;
-}
-
-.top-navbar .fas.fa-search {
-  margin-right: 20px;
-}
-
-.top-navbar .fas.fa-shopping-bag {
-  margin-right: 0;
-}
-
-.store,
-.mac {
-  font-weight: 600;
-}
-
-.logo + a {
-  margin-left: 20px;
-}
-
-.top-navbar > a,
-.top-navbar > .logo {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-@media (max-width: 768px) {
-  .top-navbar {
-    padding: 15px 20px;
-  }
-  .top-navbar a {
-    font-size: 15px;
-  }
-  .top-navbar .fas {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .top-navbar {
-    padding: 10px 15px;
-  }
-  .top-navbar a {
-    font-size: 13px;
-  }
-  .top-navbar .fas {
-    font-size: 14px;
-  }
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-right: 10px;
-}
-.nav-links div {
-  color: #1d1d1f;
-  text-decoration: none;
-  margin-right: 25px;
-}
-header {
-  position: relative;
-}
-
-.dropdown-content {
-  padding: 0 40px;
-  justify-content: center;
-  background-color: #f7f7f7d5;
-  z-index: 1;
-  align-items: flex-start;
-  width: 100%;
-  box-sizing: border-box;
-  backdrop-filter: blur(10px);
-  text-align: left;
-  opacity: 0;
-  visibility: hidden;
-  max-height: 0;
-  overflow: hidden;
-  position: fixed;
-  top: 46px;
-  left: 0;
-  right: 0;
-  transition: max-height 0.5s ease-in-out, opacity 3s ease-out,
-  visibility 3s;
-  display: flex;
-  flex-direction: row;
-}
-
-.top-navbar:hover + .dropdown-content,
-.dropdown-content:hover {
-  visibility: visible;
-  opacity: 1;
-  max-height: 400px;
-  transition: max-height 0.5s ease-in-out, opacity 0.3s ease-out;
-}
-
-.top-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 10;
-}
-
-.dropdown-content .column {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  margin: 10px 80px;
-}
-.dropdown-content .column h3 {
-  font-size: 18px;
-  font-weight: 600;
-  color: #333;
-  margin: 0 0 10px 0;
-}
-.dropdown-content .column a {
-  font-size: 17px;
-  font-weight: 400;
-  color: #1d1d1f;
-  text-decoration: none;
-  margin: 5px 0;
-}
-.dropdown-content .column a:first-child {
-  font-weight: 600;
-}
-  </style>
-      <header>
-        <div class="top-navbar">
-          <a href="/index.html" class="logo">
-            <img src="/images/apple-navbar-logo.svg" alt="apple-logo" />
-          </a>
-          <div class="nav-links">
-            <div class="dropdown">
-              <a href="/routes/store.html" class="store">Store</a>
-            </div>
-            <div class="dropdown">
-              <a href="/routes/store.html" class="dropdown-toggle">Mac</a>
-            </div>
-            <div class="dropdown">
-              <a href="/routes/store.html" class="dropdown-toggle">iPad</a>
-            </div>
-            <div class="dropdown">
-              <a href="/routes/iphonestore.html" class="dropdown-toggle">iPhone</a>
-            </div>
-            <div class="dropdown">
-              <a href="/routes/store.html" class="dropdown-toggle">Watch</a>
-            </div>
-            <div class="dropdown">
-              <a href="/routes/store.html" class="dropdown-toggle">Vision</a>
-            </div>
-            <div class="dropdown">
-              <a href="/routes/store.html" class="dropdown-toggle">AirPods</a>
-            </div>
-            <div class="dropdown">
-              <a href="/routes/store.html" class="dropdown-toggle">TV & Home</a>
-            </div>
-            <div class="dropdown">
-              <a href="/routes/store.html" class="dropdown-toggle">Entertainment</a>
-            </div>
-            <div class="dropdown">
-              <a href="/routes/store.html" class="dropdown-toggle">Accessories</a>
-            </div>
-            <a href="/routes/login.html" class="user">Login</a>
-            <a href="#"><img src="/images/search.svg" alt="search" /></a>
-            <a href="/routes/cart.html">
-              <img src="/images/bag-navbar-logo.svg" alt="cart" />
-            </a>
-          </div>
-        </div>
-        <div class="dropdown-content">
-          <div class="column">
-            <h3>Shop</h3>
-            <a href="/routes/store.html">Shop the Latest</a>
-            <a href="/routes/store.html">Mac</a>
-            <a href="/routes/store.html">iPad</a>
-            <a href="/routes/store.html">iPhone</a>
-            <a href="/routes/store.html">Apple Watch</a>
-            <a href="/routes/store.html">Apple Vision Pro</a>
-            <a href="/routes/store.html">Accessories</a>
-          </div>
-          <div class="column">
-            <h3>Quick Links</h3>
-            <a href="/routes/store.html">Find a Store</a>
-            <a href="/routes/store.html">Order Status</a>
-            <a href="/routes/store.html">Apple Trade In</a>
-            <a href="/routes/store.html">Financing</a>
-            <a href="/routes/store.html">College Student Offer</a>
-          </div>
-          <div class="column">
-            <h3>Shop Special Stores</h3>
-            <a href="/routes/store.html">Certified Refurbished</a>
-            <a href="/routes/store.html">Education</a>
-            <a href="/routes/store.html">Business</a>
-            <a href="/routes/store.html">Veterans and Military</a>
-            <a href="/routes/store.html">Government</a>
-          </div>
-        </div>
-      </header>
-    `;
-
-  document.body.insertAdjacentHTML("afterbegin", headerHTML);
 }

@@ -1,37 +1,46 @@
-import { tostTopEnd, isUserLoggedin } from "/utils/utils.js";
+import {
+  tostTopEnd,
+  isUserLoggedin,
+  loading,
+  stopLoading,
+  serverConfig,
+} from "/utils/utils.js";
 isUserLoggedin();
 
-let baseUrl = "https://mock-server-b514.onrender.com/products";
-
+let baseUrl = serverConfig() + "/products";
 let products = document.getElementById("products");
 let searchInput = document.getElementById("search");
 let listProducts = document.getElementById("list-products");
 let addProduct = document.getElementById("add-product");
 let removeProduct = document.getElementById("remove-product");
 
-// fetch data from the API to display products
-let apiData = async function () {
+// Refresh product list
+async function renderData() {
+  loading();
   try {
     let response = await fetch(baseUrl);
-    return await response.json();
+    response = await response.json();
+    stopLoading();
+    displayProducts(response); 
+    tostTopEnd.fire({
+      icon: "success",
+      title: "Store Refreshed!",
+    });
   } catch (error) {
     console.error("Failed to fetch products:", error);
     tostTopEnd.fire({
       icon: "error",
       title: "Failed to fetch products!",
     });
-    return [];
   }
-};
+}
 
 // Search for products
 searchInput.addEventListener("input", async function (event) {
-  let data = await apiData();
-  let searchValue = event.target.value.toLowerCase().trim();
-  let filteredData = data.filter((item) =>
-    item.title.toLowerCase().includes(searchValue)
-  );
-  displayProducts(filteredData);
+  let searchValue = event.target.value.trim();
+  let data = await fetch(`${baseUrl}?title_like=${searchValue}`);
+  data = await data.json();
+  displayProducts(data);
 });
 
 // display products on the page
@@ -41,7 +50,7 @@ function displayProducts(data) {
     products.innerHTML += `
         <div class="product">
         <h2>${element.title}</h2>
-        <img src="${element.image}" width="300px" height="400px" alt="" />
+        <img loading="lazy" src="${element.image}" width="300px" height="400px" alt="" />
         <p>${element.description}</p>
         <p>$${element.price}</p>
         <p>ID:${element.id}</p>
@@ -51,7 +60,6 @@ function displayProducts(data) {
         </div>
         </div>`;
   });
-
   // Attach event listeners for delete and edit buttons
   let deleteProduct = document.querySelectorAll(".delete-button");
   let updateProduct = document.querySelectorAll(".edit-button");
@@ -66,7 +74,7 @@ function displayProducts(data) {
             icon: "info",
             title: "Product Deleted!",
           });
-          refreshProducts();
+          renderData();
         }
       } catch (error) {
         tostTopEnd.fire({
@@ -86,11 +94,14 @@ function displayProducts(data) {
         title: "Edit Product",
         html: `
             <select id="swal-type" required>
-                <option value="mobile" ${
-                  data[index].type === "mobile" ? "selected" : ""
-                }>Mobile</option>
-                <option value="pc" ${
-                  data[index].type === "pc" ? "selected" : ""
+                <option value="iphone" ${
+                  data[index].type === "iphone" ? "selected" : ""
+                }>iphone</option>
+                <option value="ipad" ${
+                  data[index].type === "ipad" ? "selected" : ""
+                }>ipad</option>
+                <option value="mac" ${
+                  data[index].type === "mac" ? "selected" : ""
                 }>Mac</option>
                 <option value="watch" ${
                   data[index].type === "watch" ? "selected" : ""
@@ -148,7 +159,7 @@ function displayProducts(data) {
               title: "Product Updated",
             });
 
-            refreshProducts(); // Refresh the product list
+            renderData(); // Refresh the product list
           } catch (error) {
             console.error("Error updating product:", error);
             tostTopEnd.fire({
@@ -162,20 +173,10 @@ function displayProducts(data) {
   });
 }
 
-// Refresh product list
-async function refreshProducts() {
-  let data = await apiData();
-  displayProducts(data);
-  tostTopEnd.fire({
-    icon: "success",
-    title: "Store Refreshed!",
-  });
-}
-
 // Display products
 listProducts.addEventListener("click", async function () {
   products.style.display = "grid";
-  refreshProducts();
+  renderData();
 });
 
 // Add new product
@@ -184,8 +185,9 @@ addProduct.addEventListener("click", function () {
     title: "Add New Product",
     html: `
         <select name="" id="swal-type" required>
-            <option value="mobile">Mobile</option>
-            <option value="pc">Mac</option>
+            <option value="iphone">iPhone</option>
+            <option value="ipad">iPad</option>
+            <option value="mac">Mac</option>
             <option value="watch">Watch</option>
             <option value="accessories">Accessories</option>
         </select>
@@ -223,7 +225,7 @@ addProduct.addEventListener("click", function () {
           icon: "success",
           title: "Product Launched",
         });
-        refreshProducts();
+        renderData();
       } catch (error) {
         tostTopEnd.fire({
           icon: "error",
@@ -260,7 +262,7 @@ removeProduct.addEventListener("click", function () {
           icon: "info",
           title: "Product Discontinued!",
         });
-        refreshProducts();
+        renderData();
       } catch (error) {
         tostTopEnd.fire({
           icon: "error",

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,11 +11,13 @@
   <body>
     <div class="container">
       <div class="left-panel">
-        <h1>Welcome,<span class="user">Admin</span></h1>
-        <img src="/images/admin.jpeg" width="200px" height="200px" alt="" />
-        <a href="#" id="list-products">List all products</a>
-        <a href="#" id="add-product">Add new products</a>
-        <a href="#" id="remove-product">Remove a product</a>
+        <h1>Welcome<!--,<span class="user">Admin</span>--></h1> 
+        <img loading="lazy" src="/images/admin.jpeg" width="200px" height="200px" alt="" />
+        <div>
+          <a href="#" id="list-products">List all products</a>
+          <a href="#" id="add-product">Add new products</a>
+          <a href="#" id="remove-product">Remove a product</a>
+        </div>
       </div>
       <div class="right-panel">
         <div class="right-top">
@@ -28,6 +31,7 @@
     </div>
     <a class="logout" href="/index.html">LogOut</a>
   </body>
+  <div class="loading-screen"></div>
 </html>
 <script type="module" src="/script/dashboard.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
